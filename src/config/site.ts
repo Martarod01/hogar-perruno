@@ -119,7 +119,7 @@ export const services = {
     {
       title: "Alojamiento familiar",
       description:
-        "Tu perro convive con nosotros dentro de casa. Dispone de sofá, su propia cama, jardín vallado y toda la atención que necesita.",
+        "Tu perro convive con nosotros dentro de casa. Dispone de sofá, su propia cama, jardín vallado y toda la atención que necesita. Además contarás con fotos y vídeos diarios.",
     },
     {
       title: "Guardería de día",
