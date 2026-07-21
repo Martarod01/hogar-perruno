@@ -13,13 +13,13 @@ const { eyebrow, title, description, pageTitle } = Astro.props;
 
 <BaseLayout title={pageTitle} description={description}>
   <section class="section legal-page">
-    <div class="container legal-card" data-reveal>
-      <p class="eyebrow">{eyebrow}</p>
+    <div class="wrap legal-card" data-reveal>
+      <p class="legal-card__eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       <div class="legal-content">
         <slot />
       </div>
-      <a class="button" href="/">Volver al inicio</a>
+      <a class="btn" href="/">Volver al inicio</a>
     </div>
   </section>
 </BaseLayout>
@@ -27,7 +27,7 @@ const { eyebrow, title, description, pageTitle } = Astro.props;
 <style>
   .legal-page {
     min-height: 72vh;
-    background: var(--color-beige);
+    background: var(--hp-cream);
   }
 
   .legal-card {
@@ -36,33 +36,37 @@ const { eyebrow, title, description, pageTitle } = Astro.props;
     gap: 18px;
     padding: clamp(28px, 6vw, 52px);
     border-radius: var(--radius-lg);
-    background: var(--color-white);
-    box-shadow: var(--shadow-soft);
+    background: var(--hp-paper);
+    box-shadow: var(--shadow);
   }
 
-  h1 { font-size: clamp(1.9rem, 6vw, 3.2rem); }
+  .legal-card__eyebrow {
+    margin: 0;
+    color: var(--hp-olive);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(1.9rem, 6vw, 3rem);
+    font-weight: 600;
+  }
 
   .legal-content {
     display: grid;
     gap: 16px;
-    color: var(--color-graphite);
+    color: var(--hp-muted);
   }
 
   .legal-content :global(h2) {
     margin-top: 12px;
-    font-family: var(--font-body);
     font-size: 1rem;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    color: var(--color-ink);
-  }
-
-  .legal-content :global(h3) {
-    margin-top: 8px;
-    font-family: var(--font-body);
-    font-size: 0.92rem;
     font-weight: 700;
-    color: var(--color-charcoal);
+    color: var(--hp-ink);
   }
 
   .legal-content :global(p),
@@ -76,7 +80,7 @@ const { eyebrow, title, description, pageTitle } = Astro.props;
   }
 
   .legal-content :global(a) {
-    color: var(--color-green-dark);
+    color: var(--hp-olive-dark);
     font-weight: 700;
   }
 
@@ -89,19 +93,14 @@ const { eyebrow, title, description, pageTitle } = Astro.props;
   .legal-content :global(th),
   .legal-content :global(td) {
     padding: 10px 12px;
-    border: 1px solid var(--color-line);
+    border: 1px solid var(--hp-line);
     text-align: left;
-    vertical-align: top;
   }
 
   .legal-content :global(th) {
-    background: var(--color-cream);
-    color: var(--color-ink);
-    font-weight: 700;
+    background: var(--hp-olive-soft);
+    color: var(--hp-ink);
   }
 
-  .button {
-    width: fit-content;
-    margin-top: 12px;
-  }
+  .btn { width: fit-content; margin-top: 12px; }
 </style>

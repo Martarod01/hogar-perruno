@@ -1,0 +1,105 @@
+---
+import { contact, footer, local, navItems, seo } from "../config/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <img src={seo.logo} alt="Hogar Perruno" width="400" height="400" loading="lazy" />
+      <p>{footer.tagline}</p>
+      <p class="footer__nap">Alojamiento canino en {local.city}</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Pie de página">
+      <h2>Secciones</h2>
+      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <div class="footer__contact">
+      <h2>Contacto</h2>
+      <a href={`tel:${contact.phone1Href}`}>{contact.phone1}</a>
+      <a href={`tel:${contact.phone2Href}`}>{contact.phone2}</a>
+      <a href={`mailto:${contact.email}`}>{contact.email}</a>
+      <a href={contact.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="wrap footer__bottom">
+    <p>© {year} Hogar Perruno</p>
+    <nav aria-label="Legal">
+      <a href="/aviso-legal/">Aviso legal</a>
+      <a href="/privacidad/">Privacidad</a>
+      <a href="/cookies/">Cookies</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 56px 0 24px;
+    background: linear-gradient(180deg, var(--hp-brown) 0%, #6b5342 100%);
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .footer__grid {
+    display: grid;
+    gap: 32px;
+  }
+
+  .footer__brand img {
+    width: 120px;
+    margin-bottom: 16px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .footer__brand p { margin: 0; max-width: 380px; line-height: 1.65; }
+  .footer__nap { margin-top: 12px !important; font-size: 0.82rem; opacity: 0.7; }
+
+  .footer h2 {
+    margin: 0 0 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .footer__nav, .footer__contact {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+  }
+
+  .footer a {
+    width: fit-content;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.92rem;
+    transition: color 180ms;
+  }
+
+  .footer a:hover { color: var(--hp-tan); }
+
+  .footer__bottom {
+    display: grid;
+    gap: 10px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.8rem;
+  }
+
+  .footer__bottom nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+  }
+
+  @media (min-width: 760px) {
+    .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
+    .footer__bottom { grid-template-columns: 1fr auto; align-items: center; }
+  }
+</style>

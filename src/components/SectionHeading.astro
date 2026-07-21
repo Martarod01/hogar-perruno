@@ -1,0 +1,82 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  align?: "center" | "left";
+  id?: string;
+}
+
+const { eyebrow, title, lead, align = "center", id } = Astro.props;
+---
+
+<div class={`section-heading section-heading--${align}`} data-reveal>
+  <p class="section-heading__eyebrow">
+    <span class="section-heading__paw" aria-hidden="true">🐾</span>
+    {eyebrow}
+  </p>
+  {id ? <h2 id={id} class="section-heading__title">{title}</h2> : <h2 class="section-heading__title">{title}</h2>}
+  {lead && <p class="section-heading__lead">{lead}</p>}
+</div>
+
+<style>
+  .section-heading {
+    display: grid;
+    gap: 14px;
+    margin-bottom: clamp(36px, 5vw, 52px);
+  }
+
+  .section-heading--center {
+    max-width: 700px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .section-heading--left {
+    max-width: 580px;
+    text-align: left;
+  }
+
+  .section-heading__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 6px 14px;
+    width: fit-content;
+    border-radius: var(--radius-pill);
+    background: var(--hp-peach);
+    color: var(--hp-brown);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .section-heading--center .section-heading__eyebrow {
+    margin-inline: auto;
+  }
+
+  .section-heading__paw {
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+
+  .section-heading__title {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(1.9rem, 4.2vw, 2.75rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--hp-ink);
+    letter-spacing: -0.01em;
+  }
+
+  .section-heading__lead {
+    margin: 0;
+    color: var(--hp-muted);
+    font-size: clamp(1.02rem, 1.5vw, 1.14rem);
+    line-height: 1.75;
+  }
+</style>

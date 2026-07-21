@@ -2,144 +2,119 @@
 import { contact } from "../config/site";
 
 interface Props {
-  variant?: "hero" | "footer";
   title?: string;
   description?: string;
   googleScriptEndpoint?: string;
 }
 
 const {
-  variant = "hero",
   title = "Solicita información o reserva",
   description = "Cuéntanos cómo es tu perro y te contactamos para organizar la estancia.",
   googleScriptEndpoint = "",
 } = Astro.props;
-
-const formId = `contact-form-${variant}`;
 ---
 
-<form
-  class={`contact-form contact-form--${variant}`}
-  id={formId}
-  data-contact-form
-  data-endpoint={googleScriptEndpoint}
-  data-variant={variant}
->
-  <div class="form-heading">
-    <p class="eyebrow">Contacto</p>
-    <h2>{title}</h2>
+<form class="form" data-contact-form data-endpoint={googleScriptEndpoint}>
+  <div class="form__head">
+    <h3>{title}</h3>
     <p>{description}</p>
   </div>
 
-  <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
-  <input type="hidden" name="source" value={`Hogar Perruno (${variant})`} />
+  <input type="text" name="_gotcha" class="form__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <input type="hidden" name="source" value="Hogar Perruno (contacto)" />
 
-  <div class="field-grid">
+  <div class="form__row">
     <label>
       <span>Tu nombre</span>
-      <input type="text" name="name" autocomplete="name" placeholder="Tu nombre" required />
+      <input type="text" name="name" autocomplete="name" required />
     </label>
     <label>
       <span>Teléfono</span>
-      <input type="tel" name="phone" autocomplete="tel" placeholder="Tu teléfono" required />
+      <input type="tel" name="phone" autocomplete="tel" required />
     </label>
   </div>
 
   <label>
     <span>Email</span>
-    <input type="email" name="email" autocomplete="email" placeholder="tu@email.com" required />
+    <input type="email" name="email" autocomplete="email" required />
   </label>
 
-  <div class="field-grid">
+  <div class="form__row">
     <label>
       <span>Nombre del perro</span>
-      <input type="text" name="dog_name" placeholder="¿Cómo se llama?" />
+      <input type="text" name="dog_name" />
     </label>
     <label>
       <span>Raza</span>
-      <input type="text" name="dog_breed" placeholder="Raza o tipo de perro" />
+      <input type="text" name="dog_breed" />
     </label>
   </div>
 
-  <div class="field-grid">
+  <div class="form__row">
     <label>
-      <span>Fecha de entrada</span>
+      <span>Fecha entrada</span>
       <input type="date" name="date_from" />
     </label>
     <label>
-      <span>Fecha de salida</span>
+      <span>Fecha salida</span>
       <input type="date" name="date_to" />
     </label>
   </div>
 
   <label>
-    <span>Necesidades especiales o comentarios</span>
-    <textarea name="message" rows="4" placeholder="Rutina, alimentación, medicación, personalidad... cuéntanos lo que necesitamos saber para cuidarle bien"></textarea>
+    <span>Comentarios</span>
+    <textarea name="message" rows="4" placeholder="Rutina, alimentación, medicación, personalidad..."></textarea>
   </label>
 
-  <label class="consent">
+  <label class="form__consent">
     <input type="checkbox" name="consent" value="accepted" required />
     <span>
-      He leído y acepto la <a href="/privacidad/" target="_blank" rel="noreferrer">política de privacidad</a>
-      y autorizo a Hogar Perruno a contactarme para responder a mi solicitud.
+      Acepto la <a href="/privacidad/" target="_blank" rel="noreferrer">política de privacidad</a>
+      y autorizo a Hogar Perruno a contactarme.
     </span>
   </label>
 
-  <button class="button" type="submit" data-submit-button>
-    Enviar solicitud
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" /></svg>
-  </button>
+  <button class="btn form__submit" type="submit" data-submit>Enviar solicitud</button>
+  <p class="form__status" aria-live="polite" data-status></p>
 
-  <p class="form-status" aria-live="polite" data-form-status></p>
-
-  <div class="form-alternative">
-    <span>¿Prefieres escribirnos directamente?</span>
-    <a href={contact.whatsapp} target="_blank" rel="noreferrer" class="wa-link">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12Z" /><path d="M8.5 9.5c0 4 2 6 6 6" /></svg>
-      WhatsApp
-    </a>
-  </div>
+  <p class="form__alt">
+    ¿Prefieres WhatsApp?
+    <a href={contact.whatsapp} target="_blank" rel="noreferrer">Escríbenos aquí</a>
+  </p>
 </form>
 
 <script>
   document.querySelectorAll("[data-contact-form]").forEach((form) => {
-    const status = form.querySelector("[data-form-status]");
-    const button = form.querySelector("[data-submit-button]");
-    const endpoint = (form as HTMLFormElement).dataset.endpoint;
+    const status = form.querySelector("[data-status]");
+    const button = form.querySelector("[data-submit]");
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!(form instanceof HTMLFormElement) || !(status instanceof HTMLElement)) return;
 
-      if (!(form instanceof HTMLFormElement)) return;
-      if (!(status instanceof HTMLElement)) return;
+      const hp = form.querySelector<HTMLInputElement>('[name="_gotcha"]');
+      if (hp?.value) return;
 
-      const honeypot = form.querySelector<HTMLInputElement>('[name="_gotcha"]');
-      if (honeypot?.value) return;
-
+      const endpoint = form.dataset.endpoint;
       if (button instanceof HTMLButtonElement) {
         button.disabled = true;
         button.textContent = "Enviando…";
       }
 
-      status.textContent = "";
-      status.className = "form-status";
-
       try {
         if (endpoint) {
-          const data = new FormData(form);
-          await fetch(endpoint, { method: "POST", body: data, mode: "no-cors" });
+          await fetch(endpoint, { method: "POST", body: new FormData(form), mode: "no-cors" });
         }
-
-        status.textContent = "¡Mensaje enviado! Te contactamos lo antes posible.";
-        status.classList.add("form-status--ok");
+        status.textContent = "¡Mensaje enviado! Te contactamos pronto.";
+        status.className = "form__status form__status--ok";
         form.reset();
       } catch {
-        status.textContent = "Algo no ha ido bien. Escríbenos directamente por WhatsApp o teléfono.";
-        status.classList.add("form-status--error");
+        status.textContent = "Error al enviar. Prueba por WhatsApp o teléfono.";
+        status.className = "form__status form__status--err";
       } finally {
         if (button instanceof HTMLButtonElement) {
           button.disabled = false;
-          button.innerHTML = `Enviar solicitud <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" /></svg>`;
+          button.textContent = "Enviar solicitud";
         }
       }
     });
@@ -147,179 +122,75 @@ const formId = `contact-form-${variant}`;
 </script>
 
 <style>
-  .honeypot {
-    position: absolute;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    opacity: 0;
-    pointer-events: none;
+  .form { display: grid; gap: 14px; }
+  .form__hp { position: absolute; opacity: 0; pointer-events: none; }
+
+  .form__head h3 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
   }
 
-  .contact-form {
+  .form__head p {
+    margin: 6px 0 0;
+    color: var(--hp-muted);
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .form__row {
     display: grid;
-    gap: 18px;
-  }
-
-  .form-heading {
-    display: grid;
-    gap: 10px;
-  }
-
-  .form-heading .eyebrow { margin-bottom: 0; }
-
-  .form-heading h2 {
-    font-size: clamp(1.5rem, 3.5vw, 2rem);
-  }
-
-  .form-heading p {
-    color: var(--color-graphite);
-    font-size: 0.96rem;
-    line-height: 1.6;
-  }
-
-  .field-grid {
-    display: grid;
-    gap: 14px;
-  }
-
-  label {
-    display: grid;
-    gap: 7px;
-  }
-
-  label span {
-    color: var(--color-ink);
-    font-size: 0.84rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-
-  input,
-  textarea,
-  select {
-    width: 100%;
-    padding: 13px 16px;
-    border: 1.5px solid var(--color-sand);
-    border-radius: var(--radius-sm);
-    background: var(--color-white);
-    color: var(--color-ink);
-    font-size: 0.97rem;
-    transition: border-color 180ms var(--ease), box-shadow 180ms var(--ease);
-    appearance: none;
-  }
-
-  input:focus,
-  textarea:focus,
-  select:focus {
-    outline: none;
-    border-color: var(--color-green);
-    box-shadow: 0 0 0 3px rgba(90, 122, 82, 0.14);
-  }
-
-  input[type="date"] {
-    cursor: pointer;
-  }
-
-  textarea { resize: vertical; min-height: 110px; }
-
-  .consent {
-    display: flex;
     gap: 12px;
+  }
+
+  label { display: grid; gap: 6px; }
+  label span { font-size: 0.8rem; font-weight: 600; color: var(--hp-ink); }
+
+  input, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--hp-sand);
+    border-radius: 12px;
+    background: var(--hp-cream);
+    color: var(--hp-ink);
+    transition: border-color 180ms, box-shadow 180ms;
+  }
+
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--hp-olive);
+    box-shadow: 0 0 0 3px rgba(95, 122, 86, 0.15);
+  }
+
+  textarea { resize: vertical; min-height: 100px; }
+
+  .form__consent {
+    display: flex;
+    gap: 10px;
     align-items: flex-start;
   }
 
-  .consent input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    padding: 0;
-    flex-shrink: 0;
-    margin-top: 2px;
-    border-radius: 5px;
-    accent-color: var(--color-green);
-    cursor: pointer;
-  }
+  .form__consent input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--hp-olive); }
+  .form__consent span { font-size: 0.8rem; color: var(--hp-muted); line-height: 1.5; font-weight: 400; }
+  .form__consent a { color: var(--hp-olive-dark); font-weight: 700; }
 
-  .consent span {
-    font-size: 0.82rem;
-    color: var(--color-graphite);
-    line-height: 1.6;
-    font-weight: 400;
-  }
+  .form__submit { width: 100%; }
 
-  .consent a {
-    color: var(--color-green-dark);
-    font-weight: 700;
-  }
+  .form__status { margin: 0; font-size: 0.86rem; font-weight: 600; min-height: 1.2em; }
+  .form__status--ok { color: #3d7a4b; }
+  .form__status--err { color: #b33; }
 
-  .button {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .button svg {
-    width: 18px;
-    height: 18px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2.2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    transition: transform 240ms var(--ease);
-  }
-
-  .button:hover svg { transform: translateX(3px); }
-
-  .form-status {
-    font-size: 0.88rem;
-    font-weight: 600;
-    min-height: 1.4em;
-  }
-
-  .form-status--ok { color: var(--color-success); }
-  .form-status--error { color: #c0392b; }
-
-  .form-alternative {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    padding-top: 8px;
-    border-top: 1px solid var(--color-line);
+  .form__alt {
+    margin: 4px 0 0;
     font-size: 0.85rem;
-    color: var(--color-graphite);
+    color: var(--hp-muted);
+    text-align: center;
   }
 
-  .wa-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
-    border-radius: var(--radius-pill);
-    background: var(--color-green-soft);
-    color: var(--color-green-dark);
-    font-weight: 700;
-    font-size: 0.85rem;
-    transition: background-color 180ms var(--ease), transform 180ms var(--ease);
-  }
+  .form__alt a { color: var(--hp-olive-dark); font-weight: 700; }
 
-  .wa-link:hover {
-    background: var(--color-green);
-    color: var(--color-white);
-    transform: translateY(-1px);
-  }
-
-  .wa-link svg {
-    width: 16px;
-    height: 16px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  @media (min-width: 540px) {
-    .field-grid { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 520px) {
+    .form__row { grid-template-columns: 1fr 1fr; }
   }
 </style>

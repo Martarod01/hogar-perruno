@@ -1,0 +1,121 @@
+---
+import { about } from "../config/site";
+import { siteImages } from "../config/images";
+import SeoImage from "./SeoImage.astro";
+---
+
+<section class="section section--alt about" id="sobre-nosotros" aria-labelledby="about-title">
+  <div class="wrap about__grid">
+    <div class="about__visual" data-reveal>
+      <figure>
+        <SeoImage
+          image={siteImages.about.image}
+          alt={siteImages.about.alt}
+          title={siteImages.about.title}
+          loading={siteImages.about.loading}
+          sizes="(min-width: 900px) 440px, 100vw"
+          class="about__img"
+        />
+      </figure>
+      <div class="about__quote">
+        <p>“Donde tu perro siempre es familia”</p>
+      </div>
+    </div>
+
+    <div class="about__copy" data-reveal style="--delay: 100ms">
+      <p class="about__eyebrow">{about.eyebrow}</p>
+      <h2 id="about-title">{about.title}</h2>
+      {about.paragraphs.map((p) => <p>{p}</p>)}
+      <p class="about__sign">{about.signature}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .about__visual {
+    position: relative;
+  }
+
+  .about__visual figure {
+    margin: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .about__visual :global(.about__img) {
+    width: 100%;
+    height: clamp(320px, 50vw, 480px);
+    object-fit: cover;
+  }
+
+  .about__quote {
+    position: absolute;
+    right: -8px;
+    bottom: -16px;
+    max-width: 250px;
+    padding: 20px 22px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--hp-olive), #85a67c);
+    color: #fff;
+    box-shadow: var(--shadow);
+    transform: rotate(-2deg);
+  }
+
+  .about__quote p {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.35;
+  }
+
+  .about__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 12px;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--hp-peach);
+    color: var(--hp-brown);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .about__copy h2 {
+    margin: 0 0 20px;
+    font-family: var(--font-serif);
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  .about__copy p {
+    margin: 0 0 16px;
+    color: var(--hp-muted);
+    line-height: 1.75;
+  }
+
+  .about__sign {
+    margin-top: 8px !important;
+    color: var(--hp-brown) !important;
+    font-weight: 700;
+    font-size: 0.9rem !important;
+  }
+
+  @media (min-width: 900px) {
+    .about__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+    }
+  }
+</style>

@@ -1,18 +1,15 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import BackgroundBlobs from "../components/BackgroundBlobs.astro";
-import CookieBanner from "../components/CookieBanner.astro";
+import AmbientDecor from "../components/AmbientDecor.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import Analytics from "../components/Analytics.astro";
 import { local, seo } from "../config/site";
 import { siteImages } from "../config/images";
 import { buildSocialImageUrl, buildStructuredData } from "../lib/seo";
 import "../styles/global.css";
 
-const {
-  title = seo.title,
-  description = seo.description,
-} = Astro.props;
+const { title = seo.title, description = seo.description } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, seo.siteUrl).toString();
 const socialImageUrl = buildSocialImageUrl();
@@ -31,11 +28,10 @@ const structuredData = buildStructuredData(description, canonicalUrl);
     <meta name="robots" content="index, follow" />
     <meta name="geo.region" content="ES-MD" />
     <meta name="geo.placename" content={local.city} />
-    <meta name="theme-color" content="#5a7a52" />
+    <meta name="theme-color" content="#6d8f64" />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/logo.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -52,35 +48,28 @@ const structuredData = buildStructuredData(description, canonicalUrl);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl} />
-    <meta name="twitter:image:alt" content={siteImages.hero.alt} />
 
     <slot name="head" />
-
     <title>{title}</title>
-
     <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
   </head>
 
   <body>
-    <BackgroundBlobs />
+    <AmbientDecor />
     <Analytics />
-    <Header />
+    <SiteHeader />
     <main>
       <slot />
     </main>
-    <Footer />
-    <CookieBanner />
+    <SiteFooter />
+    <CookieConsent />
 
     <script>
-      const reveals = document.querySelectorAll("[data-reveal]");
       const observer = new IntersectionObserver(
-        (entries) =>
-          entries.forEach((e) => {
-            if (e.isIntersecting) e.target.classList.add("is-visible");
-          }),
-        { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+        (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("is-visible")),
+        { threshold: 0.08, rootMargin: "0px 0px -30px 0px" }
       );
-      reveals.forEach((el) => observer.observe(el));
+      document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>

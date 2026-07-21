@@ -1,0 +1,61 @@
+---
+import { faq } from "../config/site";
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section class="section section--alt faq" id="preguntas-frecuentes" aria-labelledby="faq-title">
+  <div class="wrap">
+    <SectionHeading eyebrow={faq.eyebrow} title={faq.title} lead={faq.lead} id="faq-title" />
+
+    <div class="faq__list">
+      {faq.items.map((item, i) => (
+        <details class="faq__item" data-reveal style={`--delay: ${i * 50}ms`}>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__list {
+    display: grid;
+    gap: 10px;
+    max-width: 780px;
+    margin-inline: auto;
+  }
+
+  .faq__item {
+    border-radius: var(--radius-lg);
+    background: var(--hp-paper);
+    border: 1px solid var(--hp-line);
+    overflow: hidden;
+    transition: border-color 200ms, box-shadow 200ms;
+  }
+
+  .faq__item[open] {
+    border-color: var(--hp-honey);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .faq__item summary {
+    padding: 20px 22px;
+    cursor: pointer;
+    font-family: var(--font-serif);
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--hp-ink);
+    list-style: none;
+  }
+
+  .faq__item summary::-webkit-details-marker { display: none; }
+
+  .faq__item p {
+    margin: 0;
+    padding: 0 22px 20px;
+    color: var(--hp-muted);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+</style>

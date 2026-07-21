@@ -1,0 +1,122 @@
+---
+import { pricing } from "../config/site";
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section class="section pricing" id="tarifas" aria-labelledby="pricing-title">
+  <div class="wrap">
+    <SectionHeading eyebrow={pricing.eyebrow} title={pricing.title} lead={pricing.lead} id="pricing-title" />
+
+    <div class="pricing__cards">
+      {pricing.items.map((item, i) => (
+        <article class={`pricing__card${item.highlight ? " pricing__card--featured" : ""}`} data-reveal style={`--delay: ${i * 90}ms`}>
+          {item.highlight && <span class="pricing__tag">Más solicitado</span>}
+          <h3>{item.name}</h3>
+          <p class="pricing__price">
+            <span>{item.price}€</span>
+            <small>/{item.unit}</small>
+          </p>
+          <p class="pricing__desc">{item.description}</p>
+          <a class="btn" href="#contacto">Reservar</a>
+        </article>
+      ))}
+    </div>
+
+    {pricing.note && <p class="pricing__note" data-reveal>{pricing.note}</p>}
+  </div>
+</section>
+
+<style>
+  .pricing__cards {
+    display: grid;
+    gap: 18px;
+    max-width: 760px;
+    margin-inline: auto;
+  }
+
+  .pricing__card {
+    position: relative;
+    padding: 34px 30px;
+    border-radius: var(--radius-xl);
+    background: var(--hp-paper);
+    border: 2px solid var(--hp-line);
+    box-shadow: var(--shadow-soft);
+    display: grid;
+    gap: 12px;
+    transition: transform 280ms var(--ease);
+  }
+
+  .pricing__card:hover { transform: translateY(-4px); }
+
+  .pricing__card--featured {
+    border-color: var(--hp-tan);
+    background: linear-gradient(160deg, var(--hp-peach) 0%, var(--hp-paper) 70%);
+    box-shadow: var(--shadow);
+  }
+
+  .pricing__tag {
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    padding: 5px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--hp-olive);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .pricing__card h3 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  .pricing__price {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .pricing__price span {
+    font-family: var(--font-serif);
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--hp-olive-dark);
+    line-height: 1;
+  }
+
+  .pricing__price small {
+    color: var(--hp-muted);
+    font-size: 1rem;
+  }
+
+  .pricing__desc {
+    margin: 0;
+    color: var(--hp-muted);
+    line-height: 1.65;
+    font-size: 0.95rem;
+  }
+
+  .pricing__card .btn { width: fit-content; margin-top: 6px; }
+
+  .pricing__note {
+    margin: 28px auto 0;
+    max-width: 520px;
+    text-align: center;
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    background: var(--hp-olive-soft);
+    color: var(--hp-olive-dark);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  @media (min-width: 640px) {
+    .pricing__cards { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

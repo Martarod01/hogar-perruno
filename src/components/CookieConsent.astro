@@ -1,0 +1,109 @@
+---
+import { legal } from "../config/site";
+---
+
+<div class="cookies" data-cookie-banner hidden>
+  <div class="cookies__panel" role="dialog" aria-labelledby="cookie-title">
+    <div>
+      <p id="cookie-title" class="cookies__title">Cookies y privacidad</p>
+      <p class="cookies__text">
+        Usamos cookies técnicas necesarias. Las opcionales solo se activan si las aceptas.
+        Más info en <a href="/cookies/">política de cookies</a>.
+      </p>
+    </div>
+    <div class="cookies__actions">
+      <button type="button" class="btn btn--outline" data-cookie-reject>Rechazar</button>
+      <button type="button" class="btn" data-cookie-accept>Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ consentKey: legal.cookieConsentKey, consentVersion: legal.cookieConsentVersion }}>
+  const banner = document.querySelector("[data-cookie-banner]");
+  const accept = document.querySelector("[data-cookie-accept]");
+  const reject = document.querySelector("[data-cookie-reject]");
+
+  if (banner instanceof HTMLElement) {
+    const read = () => {
+      try {
+        const raw = localStorage.getItem(consentKey);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        return parsed?.version === consentVersion ? parsed : null;
+      } catch { return null; }
+    };
+
+    const notify = (choice) => {
+      document.documentElement.dataset.cookieConsent = choice;
+      document.dispatchEvent(new CustomEvent("hogarperruno:cookie-consent", { detail: { choice } }));
+    };
+
+    const save = (choice) => {
+      localStorage.setItem(consentKey, JSON.stringify({ version: consentVersion, choice }));
+      notify(choice);
+      banner.hidden = true;
+    };
+
+    const existing = read();
+    if (existing) notify(existing.choice);
+    else banner.hidden = false;
+
+    accept?.addEventListener("click", () => save("accepted"));
+    reject?.addEventListener("click", () => save("rejected"));
+  }
+</script>
+
+<style>
+  .cookies {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 100;
+    padding: 14px;
+    pointer-events: none;
+  }
+
+  .cookies__panel {
+    pointer-events: auto;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 18px 20px;
+    border-radius: var(--radius);
+    background: var(--hp-paper);
+    border: 1px solid var(--hp-line);
+    box-shadow: var(--shadow-lg);
+    display: grid;
+    gap: 14px;
+  }
+
+  .cookies__title {
+    margin: 0 0 6px;
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .cookies__text {
+    margin: 0;
+    font-size: 0.86rem;
+    color: var(--hp-muted);
+    line-height: 1.55;
+  }
+
+  .cookies__text a { color: var(--hp-olive-dark); font-weight: 700; }
+
+  .cookies__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cookies__actions .btn { min-height: 42px; padding-inline: 18px; font-size: 0.86rem; }
+
+  @media (min-width: 700px) {
+    .cookies__panel {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+</style>

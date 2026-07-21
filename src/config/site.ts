@@ -39,11 +39,10 @@ export const seo = {
 
 export const navItems = [
   { label: "Inicio", href: "#inicio" },
-  { label: "Sobre nosotros", href: "#sobre-nosotros" },
+  { label: "Nosotros", href: "#sobre-nosotros" },
   { label: "Servicios", href: "#servicios" },
-  { label: "Cómo trabajamos", href: "#como-trabajamos" },
+  { label: "Galería", href: "#galeria" },
   { label: "Tarifas", href: "#tarifas" },
-  { label: "Preguntas frecuentes", href: "#preguntas-frecuentes" },
   { label: "Contacto", href: "#contacto" },
 ];
 
@@ -234,6 +233,41 @@ export const faq = {
       question: "¿Qué diferencia hay con una residencia canina?",
       answer:
         "En las residencias los perros suelen dormir en cheniles o zonas separadas. En Hogar Perruno conviven con nosotros en casa, como un miembro más de la familia, con toda la atención y el cariño que eso implica.",
+    },
+  ],
+};
+
+export const gallery = {
+  eyebrow: "Galería",
+  title: "Un día en Hogar Perruno",
+  lead: "Paseos, juegos en el jardín, descanso en casa y momentos de cariño. Así viven nuestros huéspedes.",
+};
+
+export const testimonials = {
+  eyebrow: "Testimonios",
+  title: "Familias que confían en nosotros",
+  lead: "Lo que más nos importa es que tu perro disfrute y tú puedas irte tranquilo.",
+  items: [
+    {
+      quote:
+        "Llevamos a Luna varias veces y siempre vuelve feliz. Nos mandan fotos durante el día y eso nos da muchísima tranquilidad.",
+      author: "Ana",
+      dog: "Luna",
+      detail: "Cliente recurrente",
+    },
+    {
+      quote:
+        "Buscábamos algo distinto a una residencia. Aquí duerme en el sofá, juega en el jardín y recibe atención de verdad. Repetiremos sin dudarlo.",
+      author: "Carlos",
+      dog: "Rocky",
+      detail: "Alojamiento familiar",
+    },
+    {
+      quote:
+        "Nuestro perro es mayor y necesita cuidados especiales. Se nota que se toman el tiempo de conocerlo y adaptar todo a su ritmo.",
+      author: "María",
+      dog: "Toby",
+      detail: "Perro senior",
     },
   ],
 };

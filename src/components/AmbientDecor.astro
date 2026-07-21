@@ -1,0 +1,62 @@
+<div class="ambient" aria-hidden="true">
+  <span class="ambient__blob ambient__blob--1"></span>
+  <span class="ambient__blob ambient__blob--2"></span>
+  <span class="ambient__blob ambient__blob--3"></span>
+</div>
+
+<style is:global>
+  .ambient {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .ambient__blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.55;
+  }
+
+  .ambient__blob--1 {
+    top: 8%;
+    right: -5%;
+    width: 340px;
+    height: 340px;
+    background: rgba(248, 235, 224, 0.9);
+  }
+
+  .ambient__blob--2 {
+    top: 45%;
+    left: -8%;
+    width: 420px;
+    height: 420px;
+    background: rgba(232, 240, 228, 0.75);
+  }
+
+  .ambient__blob--3 {
+    bottom: 5%;
+    right: 15%;
+    width: 280px;
+    height: 280px;
+    background: rgba(237, 217, 196, 0.65);
+  }
+
+  body > :not(.ambient) {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ambient__blob--1 { animation: float-slow 22s ease-in-out infinite; }
+    .ambient__blob--2 { animation: float-slow 28s ease-in-out infinite reverse; }
+    .ambient__blob--3 { animation: float-slow 24s ease-in-out infinite 4s; }
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(20px, -16px) scale(1.06); }
+  }
+</style>

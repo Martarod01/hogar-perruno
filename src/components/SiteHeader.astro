@@ -1,0 +1,175 @@
+---
+import { navItems, seo } from "../config/site";
+---
+
+<header class="header" data-header>
+  <div class="wrap header__inner">
+    <a class="header__brand" href="#inicio" aria-label="Hogar Perruno - inicio">
+      <img src={seo.logo} alt="Hogar Perruno" width="400" height="400" fetchpriority="high" />
+    </a>
+
+    <button class="header__toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <span class="sr-only">Abrir menú</span>
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="site-nav" class="header__nav" aria-label="Principal" data-nav>
+      {navItems.map((item) => (
+        <a href={item.href} data-nav-link>{item.label}</a>
+      ))}
+      <a class="btn header__cta" href="#contacto">Reservar</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector("[data-header]");
+  const toggle = document.querySelector("[data-nav-toggle]");
+  const nav = document.querySelector("[data-nav]");
+  const links = document.querySelectorAll("[data-nav-link], .header__cta");
+
+  window.addEventListener("scroll", () => {
+    header?.classList.toggle("is-scrolled", window.scrollY > 8);
+  }, { passive: true });
+
+  const close = () => {
+    toggle?.setAttribute("aria-expanded", "false");
+    nav?.classList.remove("is-open");
+    document.body.classList.remove("nav-open");
+  };
+
+  toggle?.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!open));
+    nav?.classList.toggle("is-open", !open);
+    document.body.classList.toggle("nav-open", !open);
+  });
+
+  links.forEach((l) => l.addEventListener("click", close));
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 246, 239, 0.75);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 200ms, background 200ms, box-shadow 200ms;
+  }
+
+  .header.is-scrolled {
+    background: rgba(255, 253, 248, 0.92);
+    border-bottom-color: var(--hp-line);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--header-h);
+    gap: 20px;
+  }
+
+  .header__brand img {
+    width: 108px;
+    height: auto;
+  }
+
+  .header__toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--hp-line);
+    border-radius: 50%;
+    background: var(--hp-white);
+    cursor: pointer;
+  }
+
+  .header__toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    margin-inline: auto;
+    background: var(--hp-ink);
+    border-radius: 2px;
+    transition: transform 200ms, opacity 200ms;
+  }
+
+  .header__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .header__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .header__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .header__nav {
+    position: fixed;
+    inset: calc(var(--header-h) + 10px) 16px auto;
+    display: grid;
+    gap: 4px;
+    padding: 14px;
+    border: 1px solid var(--hp-line);
+    border-radius: var(--radius);
+    background: var(--hp-paper);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 200ms, transform 200ms;
+  }
+
+  .header__nav.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .header__nav a:not(.btn) {
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-weight: 500;
+    color: var(--hp-muted);
+  }
+
+  .header__nav a:not(.btn):hover { background: var(--hp-peach); color: var(--hp-brown); }
+
+  .header__cta { width: 100%; margin-top: 6px; }
+
+  body.nav-open { overflow: hidden; }
+
+  @media (min-width: 960px) {
+    .header__toggle { display: none; }
+
+    .header__nav {
+      position: static;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+
+    .header__nav a:not(.btn) {
+      padding: 8px 12px;
+      font-size: 0.9rem;
+    }
+
+    .header__cta {
+      width: auto;
+      margin-top: 0;
+      margin-left: 8px;
+      min-height: 42px;
+      padding-inline: 18px;
+      font-size: 0.88rem;
+    }
+  }
+</style>

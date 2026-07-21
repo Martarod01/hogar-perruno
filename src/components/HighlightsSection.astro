@@ -1,0 +1,79 @@
+---
+import { values } from "../config/site";
+import SectionHeading from "./SectionHeading.astro";
+
+const icons = ["🏠", "📸", "🌿", "🤝"];
+---
+
+<section class="section highlights" aria-labelledby="highlights-title">
+  <div class="wrap">
+    <SectionHeading eyebrow={values.eyebrow} title={values.title} lead={values.lead} id="highlights-title" />
+
+    <div class="highlights__grid">
+      {values.items.map((item, i) => (
+        <article class="highlights__item" data-reveal style={`--delay: ${i * 80}ms`}>
+          <span class="highlights__icon" aria-hidden="true">{icons[i] ?? "🐾"}</span>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .highlights__grid {
+    display: grid;
+    gap: 18px;
+  }
+
+  .highlights__item {
+    padding: 28px 26px;
+    border-radius: var(--radius-lg);
+    background: var(--hp-paper);
+    border: 1px solid var(--hp-line);
+    box-shadow: var(--shadow-soft);
+    transition: transform 280ms var(--ease), border-color 280ms var(--ease);
+  }
+
+  .highlights__item:hover {
+    transform: translateY(-5px);
+    border-color: var(--hp-honey);
+  }
+
+  .highlights__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 16px;
+    border-radius: 18px;
+    background: var(--hp-peach);
+    font-size: 1.5rem;
+  }
+
+  .highlights__item h3 {
+    margin: 0 0 10px;
+    font-family: var(--font-serif);
+    font-size: 1.28rem;
+    font-weight: 600;
+    color: var(--hp-ink);
+    line-height: 1.25;
+  }
+
+  .highlights__item p {
+    margin: 0;
+    color: var(--hp-muted);
+    font-size: 0.96rem;
+    line-height: 1.68;
+  }
+
+  @media (min-width: 700px) {
+    .highlights__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .highlights__grid { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
