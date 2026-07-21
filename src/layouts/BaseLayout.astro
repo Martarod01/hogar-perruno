@@ -1,0 +1,86 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BackgroundBlobs from "../components/BackgroundBlobs.astro";
+import CookieBanner from "../components/CookieBanner.astro";
+import Analytics from "../components/Analytics.astro";
+import { local, seo } from "../config/site";
+import { siteImages } from "../config/images";
+import { buildSocialImageUrl, buildStructuredData } from "../lib/seo";
+import "../styles/global.css";
+
+const {
+  title = seo.title,
+  description = seo.description,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, seo.siteUrl).toString();
+const socialImageUrl = buildSocialImageUrl();
+const structuredData = buildStructuredData(description, canonicalUrl);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>document.documentElement.classList.add("js");</script>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={seo.keywords.join(", ")} />
+    <meta name="author" content="Hogar Perruno" />
+    <meta name="robots" content="index, follow" />
+    <meta name="geo.region" content="ES-MD" />
+    <meta name="geo.placename" content={local.city} />
+    <meta name="theme-color" content="#5a7a52" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={seo.siteName} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content={siteImages.hero.alt} />
+    <meta property="og:locale" content="es_ES" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content={siteImages.hero.alt} />
+
+    <slot name="head" />
+
+    <title>{title}</title>
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+  </head>
+
+  <body>
+    <BackgroundBlobs />
+    <Analytics />
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <CookieBanner />
+
+    <script>
+      const reveals = document.querySelectorAll("[data-reveal]");
+      const observer = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("is-visible");
+          }),
+        { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+      );
+      reveals.forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

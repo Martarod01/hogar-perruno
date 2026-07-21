@@ -1,0 +1,100 @@
+---
+import LegalLayout from "../components/LegalLayout.astro";
+import { contact, legalInfo } from "../config/site";
+---
+
+<LegalLayout
+  eyebrow="Privacidad"
+  title="Política de privacidad"
+  pageTitle="Política de privacidad | Hogar Perruno"
+  description="Información sobre el tratamiento de datos personales en Hogar Perruno conforme al RGPD."
+>
+  <p>
+    En {legalInfo.businessName} tratamos tus datos personales con transparencia y de acuerdo con el Reglamento (UE)
+    2016/679 (RGPD) y la Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de los derechos digitales
+    (LOPDGDD).
+  </p>
+
+  <h2>1. Responsable del tratamiento</h2>
+  <ul>
+    <li><strong>Responsable:</strong> {legalInfo.businessName}</li>
+    <li><strong>Correo electrónico:</strong> <a href={`mailto:${contact.email}`}>{contact.email}</a></li>
+    <li><strong>Teléfono:</strong> <a href={`tel:${contact.phone1Href}`}>{contact.phone1}</a></li>
+    <li><strong>Domicilio:</strong> {legalInfo.address}</li>
+  </ul>
+
+  <h2>2. Datos que recopilamos</h2>
+  <ul>
+    <li>Datos identificativos y de contacto: nombre, teléfono y correo electrónico.</li>
+    <li>Datos sobre la mascota: nombre, raza y necesidades especiales facilitados voluntariamente.</li>
+    <li>Datos facilitados en el mensaje del formulario o en comunicaciones directas.</li>
+    <li>Datos técnicos de navegación cuando sean necesarios para el funcionamiento o la seguridad del sitio.</li>
+  </ul>
+
+  <h2>3. Finalidad del tratamiento</h2>
+  <ul>
+    <li>Responder a solicitudes de información o reserva de estancias.</li>
+    <li>Gestionar la relación contractual y el servicio de cuidado solicitado.</li>
+    <li>Atender consultas recibidas por email, teléfono o WhatsApp.</li>
+    <li>Cumplir obligaciones legales aplicables.</li>
+  </ul>
+
+  <h2>4. Legitimación</h2>
+  <ul>
+    <li>El consentimiento del interesado al enviar el formulario o contactar voluntariamente.</li>
+    <li>La ejecución de medidas precontractuales o la relación de servicio solicitada.</li>
+    <li>El interés legítimo en gestionar consultas y mantener la seguridad del sitio web.</li>
+  </ul>
+
+  <h2>5. Conservación de los datos</h2>
+  <p>
+    Conservaremos tus datos mientras sea necesario para atender tu solicitud o mantener la relación de servicio, y
+    posteriormente durante los plazos legalmente exigibles. Transcurridos dichos plazos, los datos se bloquearán o
+    eliminarán de forma segura.
+  </p>
+
+  <h2>6. Destinatarios</h2>
+  <p>
+    No cedemos tus datos a terceros salvo obligación legal. Para el envío de formularios utilizamos Google Sheets como
+    herramienta de almacenamiento de las solicitudes recibidas. También pueden intervenir proveedores
+    tecnológicos necesarios para el alojamiento o mantenimiento de la web.
+  </p>
+
+  <h2>7. Transferencias internacionales</h2>
+  <p>
+    Algunos proveedores pueden estar ubicados fuera del Espacio Económico Europeo. En esos casos se aplicarán las
+    garantías previstas por la normativa de protección de datos, como cláusulas contractuales tipo.
+  </p>
+
+  <h2>8. Derechos de las personas interesadas</h2>
+  <p>Puedes ejercer los siguientes derechos escribiendo a <a href={`mailto:${contact.email}`}>{contact.email}</a>:</p>
+  <ul>
+    <li>Acceso, rectificación y supresión.</li>
+    <li>Limitación u oposición al tratamiento.</li>
+    <li>Portabilidad de los datos, cuando proceda.</li>
+    <li>Retirar el consentimiento en cualquier momento, sin afectar a la licitud del tratamiento previo.</li>
+  </ul>
+  <p>
+    Si consideras que no hemos atendido correctamente tus derechos, puedes presentar una reclamación ante la Agencia
+    Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noreferrer">www.aepd.es</a>).
+  </p>
+
+  <h2>9. Seguridad</h2>
+  <p>
+    Aplicamos medidas técnicas y organizativas razonables para proteger tus datos frente a accesos no autorizados,
+    pérdida o alteración.
+  </p>
+
+  <h2>10. Menores de edad</h2>
+  <p>
+    Este sitio no está dirigido a menores de 14 años. Si detectamos datos de menores sin consentimiento válido de sus
+    padres o tutores, procederemos a su eliminación.
+  </p>
+
+  <p>
+    Consulta también nuestro <a href="/aviso-legal/">aviso legal</a> y la
+    <a href="/cookies/">política de cookies</a>.
+  </p>
+
+  <p><em>Última actualización: {legalInfo.lastUpdated}.</em></p>
+</LegalLayout>

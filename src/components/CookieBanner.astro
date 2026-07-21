@@ -1,0 +1,133 @@
+---
+import { legal } from "../config/site";
+---
+
+<div class="cookie-banner" data-cookie-banner hidden>
+  <div class="cookie-banner__panel" role="dialog" aria-labelledby="cookie-banner-title" aria-describedby="cookie-banner-desc">
+    <div class="cookie-banner__copy">
+      <p id="cookie-banner-title" class="cookie-banner__title">Cookies y privacidad</p>
+      <p id="cookie-banner-desc" class="cookie-banner__text">
+        Usamos cookies técnicas necesarias para el funcionamiento de la web y, con tu consentimiento, cookies opcionales para mejorar la experiencia.
+        Puedes aceptarlas, rechazarlas o consultar más información en nuestra{" "}
+        <a href="/cookies/">política de cookies</a>.
+      </p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="button button--ghost" data-cookie-reject>Rechazar</button>
+      <button type="button" class="button" data-cookie-accept>Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ consentKey: legal.cookieConsentKey, consentVersion: legal.cookieConsentVersion }}>
+  const banner = document.querySelector("[data-cookie-banner]");
+  const acceptButton = document.querySelector("[data-cookie-accept]");
+  const rejectButton = document.querySelector("[data-cookie-reject]");
+
+  if (banner instanceof HTMLElement) {
+    const readConsent = () => {
+      try {
+        const raw = localStorage.getItem(consentKey);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        return parsed?.version === consentVersion ? parsed : null;
+      } catch {
+        return null;
+      }
+    };
+
+    const notifyConsent = (choice) => {
+      document.documentElement.dataset.cookieConsent = choice;
+      document.dispatchEvent(
+        new CustomEvent("hogarperruno:cookie-consent", { detail: { choice } })
+      );
+    };
+
+    const saveConsent = (choice) => {
+      localStorage.setItem(
+        consentKey,
+        JSON.stringify({ version: consentVersion, choice, updatedAt: new Date().toISOString() })
+      );
+      notifyConsent(choice);
+      banner.hidden = true;
+    };
+
+    const existing = readConsent();
+    if (existing) {
+      notifyConsent(existing.choice);
+    } else {
+      banner.hidden = false;
+    }
+
+    acceptButton?.addEventListener("click", () => saveConsent("accepted"));
+    rejectButton?.addEventListener("click", () => saveConsent("rejected"));
+  }
+</script>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 120;
+    padding: 16px;
+    pointer-events: none;
+  }
+
+  .cookie-banner__panel {
+    display: grid;
+    gap: 18px;
+    width: min(100%, 920px);
+    margin: 0 auto;
+    padding: 18px 20px;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: var(--shadow-float);
+    pointer-events: auto;
+    backdrop-filter: blur(10px);
+  }
+
+  .cookie-banner__title {
+    margin: 0 0 8px;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .cookie-banner__text {
+    margin: 0;
+    color: var(--color-graphite);
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .cookie-banner__text a {
+    color: var(--color-green-dark);
+    font-weight: 700;
+  }
+
+  .cookie-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .cookie-banner__actions .button {
+    min-height: 46px;
+    padding-inline: 22px;
+    font-size: 0.88rem;
+  }
+
+  @media (min-width: 720px) {
+    .cookie-banner__panel {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      padding: 20px 24px;
+    }
+
+    .cookie-banner__actions {
+      justify-content: flex-end;
+    }
+  }
+</style>

@@ -1,0 +1,59 @@
+---
+import SeoImage from "./SeoImage.astro";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  alt: string;
+  title?: string;
+  caption: string;
+  tone?: "light" | "warm" | "green";
+  image: ImageMetadata;
+  loading?: "lazy" | "eager";
+}
+
+const { alt, title, caption, tone = "light", image, loading = "lazy" } = Astro.props;
+---
+
+<section class={`feature-image feature-image--${tone}`} aria-label={title ?? alt}>
+  <div class="container">
+    <figure class="feature-image__figure" data-reveal>
+      <SeoImage
+        image={image}
+        alt={alt}
+        title={title}
+        loading={loading}
+        sizes="(min-width: 900px) 920px, 100vw"
+        class="feature-image__img"
+      />
+      <figcaption>{caption}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .feature-image {
+    padding: clamp(30px, 5vw, 60px) 0;
+  }
+
+  .feature-image--warm { background: rgba(243, 236, 226, 0.24); }
+  .feature-image--green { background: rgba(232, 240, 230, 0.28); }
+
+  .feature-image__figure { margin: 0; }
+
+  .feature-image__figure :global(.feature-image__img) {
+    display: block;
+    width: 100%;
+    height: clamp(260px, 42vw, 460px);
+    object-fit: cover;
+    object-position: center center;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+  }
+
+  figcaption {
+    margin-top: 16px;
+    color: var(--color-graphite);
+    text-align: center;
+    font-size: 0.9rem;
+  }
+</style>

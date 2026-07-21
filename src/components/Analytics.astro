@@ -1,0 +1,48 @@
+---
+import { analytics } from "../config/site";
+
+const hasAnalytics = Boolean(analytics.googleAnalyticsId || analytics.metaPixelId);
+---
+
+{hasAnalytics && (
+  <script
+    is:inline
+    define:vars={{
+      gaId: analytics.googleAnalyticsId,
+      pixelId: analytics.metaPixelId,
+    }}
+  >
+    (function () {
+      var loaded = false;
+
+      function loadGoogleAnalytics() {
+        if (!gaId) return;
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=" + gaId;
+        document.head.appendChild(script);
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { window.dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag("js", new Date());
+        gtag("config", gaId, { anonymize_ip: true });
+      }
+
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        loadGoogleAnalytics();
+      }
+
+      function handleConsent(choice) {
+        if (choice === "accepted") loadAnalytics();
+      }
+
+      document.addEventListener("hogarperruno:cookie-consent", function (event) {
+        handleConsent(event.detail && event.detail.choice);
+      });
+
+      handleConsent(document.documentElement.dataset.cookieConsent);
+    })();
+  </script>
+)}

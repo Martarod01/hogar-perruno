@@ -1,0 +1,173 @@
+---
+import ContactForm from "./ContactForm.astro";
+import { contact, contactSection } from "../config/site";
+---
+
+<section class="section contact-section" id="contacto" aria-labelledby="contact-title">
+  <div class="container contact-grid">
+    <div class="contact-copy" data-reveal>
+      <p class="eyebrow">{contactSection.eyebrow}</p>
+      <h2 id="contact-title">{contactSection.title}</h2>
+      <p class="lead">{contactSection.lead}</p>
+
+      <div class="contact-details" aria-label="Datos de contacto">
+        <a href={`tel:${contact.phone1Href}`}>
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3h3l1.5 4.5L9 9a12 12 0 0 0 6 6l1.5-2.1 4.5 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3Z" /></svg>
+          </span>
+          <span class="contact-text">
+            <strong>Teléfono 1</strong>
+            <span>{contact.phone1}</span>
+          </span>
+        </a>
+        <a href={`tel:${contact.phone2Href}`}>
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3h3l1.5 4.5L9 9a12 12 0 0 0 6 6l1.5-2.1 4.5 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3Z" /></svg>
+          </span>
+          <span class="contact-text">
+            <strong>Teléfono 2</strong>
+            <span>{contact.phone2}</span>
+          </span>
+        </a>
+        <a href={`mailto:${contact.email}`}>
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></svg>
+          </span>
+          <span class="contact-text">
+            <strong>Email</strong>
+            <span>{contact.email}</span>
+          </span>
+        </a>
+        <a href={contact.whatsapp} target="_blank" rel="noreferrer">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12Z" /><path d="M8.5 9.5c0 4 2 6 6 6" /></svg>
+          </span>
+          <span class="contact-text">
+            <strong>WhatsApp</strong>
+            <span>Escríbenos directamente</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="contact-location">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s-8-5.5-8-12a8 8 0 0 1 16 0c0 6.5-8 12-8 12Z" /><circle cx="12" cy="10" r="3" /></svg>
+        <span>Las Rozas de Madrid</span>
+      </div>
+    </div>
+
+    <div data-reveal style="--reveal-delay: 120ms">
+      <ContactForm
+        variant="footer"
+        title={contactSection.formTitle}
+        description={contactSection.formDescription}
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    background: rgba(250, 247, 242, 0.22);
+  }
+
+  .contact-grid {
+    display: grid;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .contact-copy {
+    display: grid;
+    gap: 22px;
+  }
+
+  .contact-details {
+    display: grid;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .contact-details a {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow-soft);
+    transition: transform 260ms var(--ease), box-shadow 260ms var(--ease), border-color 260ms var(--ease);
+  }
+
+  .contact-details a:hover,
+  .contact-details a:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(90, 122, 82, 0.3);
+    box-shadow: var(--shadow-card);
+  }
+
+  .contact-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--color-green-soft);
+    color: var(--color-green-dark);
+  }
+
+  .contact-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .contact-text {
+    display: grid;
+    gap: 3px;
+  }
+
+  .contact-text strong {
+    color: var(--color-ink);
+    font-size: 0.82rem;
+  }
+
+  .contact-text span {
+    color: var(--color-green-dark);
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+
+  .contact-location {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-graphite);
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .contact-location svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--color-green);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 960px) {
+    .contact-grid {
+      grid-template-columns: minmax(0, 0.9fr) minmax(400px, 0.78fr);
+      gap: 60px;
+    }
+  }
+</style>

@@ -1,0 +1,34 @@
+---
+import Hero from "../components/Hero.astro";
+import Values from "../components/Values.astro";
+import About from "../components/About.astro";
+import Services from "../components/Services.astro";
+import ImageSection from "../components/ImageSection.astro";
+import Methodology from "../components/Methodology.astro";
+import Pricing from "../components/Pricing.astro";
+import Faq from "../components/Faq.astro";
+import ContactSection from "../components/ContactSection.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { seo } from "../config/site";
+import { featuredImages, siteImages } from "../config/images";
+---
+
+<BaseLayout title={seo.title} description={seo.description}>
+  <link slot="head" rel="preload" as="image" href={siteImages.hero.image.src} fetchpriority="high" />
+  <Hero />
+  <Values />
+  <About />
+  <Services />
+  <ImageSection
+    image={featuredImages[0].image}
+    alt={featuredImages[0].alt}
+    title={featuredImages[0].title}
+    caption={featuredImages[0].caption}
+    loading={featuredImages[0].loading}
+    tone="green"
+  />
+  <Methodology />
+  <Pricing />
+  <Faq />
+  <ContactSection />
+</BaseLayout>

@@ -1,0 +1,93 @@
+---
+import LegalLayout from "../components/LegalLayout.astro";
+import { analytics, contact, legalInfo } from "../config/site";
+
+const hasAnalytics = Boolean(analytics.googleAnalyticsId || analytics.metaPixelId);
+---
+
+<LegalLayout
+  eyebrow="Cookies"
+  title="Política de cookies"
+  pageTitle="Política de cookies | Hogar Perruno"
+  description="Información sobre el uso de cookies y tecnologías similares en el sitio web de Hogar Perruno."
+>
+  <p>
+    Esta política explica qué son las cookies, qué tipos utilizamos en {legalInfo.domain} y cómo puedes gestionarlas.
+    Puedes cambiar tus preferencias en cualquier momento eliminando los datos guardados en tu navegador o usando el
+    panel de consentimiento cuando vuelva a mostrarse tras una actualización.
+  </p>
+
+  <h2>1. ¿Qué son las cookies?</h2>
+  <p>
+    Las cookies son pequeños archivos que se almacenan en tu dispositivo cuando visitas una web. También usamos
+    tecnologías similares, como el almacenamiento local del navegador, para recordar tus preferencias.
+  </p>
+
+  <h2>2. ¿Qué cookies utilizamos?</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre / clave</th>
+        <th>Tipo</th>
+        <th>Finalidad</th>
+        <th>Duración</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>hogarperruno-cookie-consent</td>
+        <td>Técnica / preferencias</td>
+        <td>Guardar si has aceptado o rechazado las cookies opcionales.</td>
+        <td>12 meses</td>
+      </tr>
+      <tr>
+        <td>Google Fonts</td>
+        <td>Técnica (terceros)</td>
+        <td>Carga de tipografías desde los servidores de Google.</td>
+        <td>Sesión / según proveedor</td>
+      </tr>
+      <tr>
+        <td>Google Sheets</td>
+        <td>Técnica (terceros)</td>
+        <td>Almacenamiento de los datos enviados por el formulario de contacto, solo al usarlo.</td>
+        <td>Según proveedor</td>
+      </tr>
+      {hasAnalytics && analytics.googleAnalyticsId && (
+        <tr>
+          <td>_ga, _ga_*</td>
+          <td>Analítica (terceros)</td>
+          <td>Medición de visitas y uso del sitio con Google Analytics. Solo si aceptas cookies.</td>
+          <td>Hasta 2 años</td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+
+  <h2>3. Cookies según su finalidad</h2>
+  <ul>
+    <li><strong>Técnicas o necesarias:</strong> permiten la navegación y el funcionamiento básico del sitio.</li>
+    <li><strong>De preferencias:</strong> recuerdan tus elecciones, como el consentimiento de cookies.</li>
+    <li><strong>Analíticas:</strong> {hasAnalytics ? "solo se activan si las aceptas en el banner." : "actualmente no se utilizan en esta web."}</li>
+  </ul>
+
+  <h2>4. Base legal</h2>
+  <p>
+    Las cookies técnicas se instalan por interés legítimo y necesidad para prestar el servicio solicitado. Las cookies
+    no esenciales solo se activarán si las aceptas expresamente mediante el banner de cookies.
+  </p>
+
+  <h2>5. Cómo gestionar o eliminar cookies</h2>
+  <p>
+    Puedes configurar tu navegador para bloquear o eliminar cookies. Ten en cuenta que, si desactivas las cookies
+    técnicas, algunas funciones del sitio podrían dejar de funcionar correctamente.
+  </p>
+
+  <h2>6. Más información</h2>
+  <p>
+    Para cualquier duda sobre esta política puedes escribir a
+    <a href={`mailto:${contact.email}`}>{contact.email}</a>. También puedes consultar nuestra
+    <a href="/privacidad/">política de privacidad</a>.
+  </p>
+
+  <p><em>Última actualización: {legalInfo.lastUpdated}.</em></p>
+</LegalLayout>
