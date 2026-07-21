@@ -137,9 +137,9 @@ export const services = {
         "Si tu perro toma medicación, nos encargamos de administrarla correctamente siguiendo tus indicaciones.",
     },
     {
-      title: "Fotos y vídeos diarios",
+      title: "Transporte",
       description:
-        "Te enviamos fotos y vídeos durante todo el día para que puedas disfrutar de tu viaje con la tranquilidad de saber cómo está.",
+        "Si deseas adoptar una mascota que se encuentra en otra localidad, prestamos servicio de recogida y entrega dentro de la península, con paradas y seguimiento durante el trayecto.",
     },
     {
       title: "Juegos y enriquecimiento mental",
