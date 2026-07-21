@@ -70,6 +70,33 @@ const structuredData = buildStructuredData(description, canonicalUrl);
         { threshold: 0.08, rootMargin: "0px 0px -30px 0px" }
       );
       document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
+
+      const scrollToHash = (hash) => {
+        const id = hash.replace(/^#/, "");
+        if (!id) return false;
+        const target = document.getElementById(id);
+        if (!target) return false;
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.pushState(null, "", `#${id}`);
+        return true;
+      };
+
+      document.addEventListener("click", (event) => {
+        const link = event.target instanceof Element ? event.target.closest("a[href*='#']") : null;
+        if (!(link instanceof HTMLAnchorElement)) return;
+
+        const url = new URL(link.href, window.location.href);
+        const samePage =
+          url.pathname === window.location.pathname ||
+          (url.pathname === "/" && (window.location.pathname === "/" || window.location.pathname === ""));
+        if (!samePage || !url.hash) return;
+
+        if (scrollToHash(url.hash)) event.preventDefault();
+      });
+
+      if (window.location.hash) {
+        requestAnimationFrame(() => scrollToHash(window.location.hash));
+      }
     </script>
   </body>
 </html>

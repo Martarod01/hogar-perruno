@@ -38,12 +38,12 @@ export const seo = {
 };
 
 export const navItems = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Nosotros", href: "#sobre-nosotros" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Galería", href: "#galeria" },
-  { label: "Tarifas", href: "#tarifas" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Inicio", href: "/#inicio" },
+  { label: "Nosotros", href: "/#sobre-nosotros" },
+  { label: "Servicios", href: "/#servicios" },
+  { label: "Galería", href: "/#galeria" },
+  { label: "Tarifas", href: "/#tarifas" },
+  { label: "Contacto", href: "/#contacto" },
 ];
 
 export const hero = {

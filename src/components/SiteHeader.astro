@@ -4,7 +4,7 @@ import { navItems, seo } from "../config/site";
 
 <header class="header" data-header>
   <div class="wrap header__inner">
-    <a class="header__brand" href="#inicio" aria-label="Hogar Perruno - inicio">
+    <a class="header__brand" href="/#inicio" aria-label="Hogar Perruno - inicio">
       <img src={seo.logo} alt="Hogar Perruno" width="400" height="400" fetchpriority="high" />
     </a>
 
@@ -17,7 +17,7 @@ import { navItems, seo } from "../config/site";
       {navItems.map((item) => (
         <a href={item.href} data-nav-link>{item.label}</a>
       ))}
-      <a class="btn header__cta" href="#contacto">Reservar</a>
+      <a class="btn header__cta" href="/#contacto">Reservar</a>
     </nav>
   </div>
 </header>

@@ -59,7 +59,7 @@ img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button, input, textarea, select { font: inherit; }
 
-main { overflow: clip; position: relative; }
+main { overflow-x: clip; position: relative; }
 
 section, [id] {
   scroll-margin-top: calc(var(--header-h) + 16px);
