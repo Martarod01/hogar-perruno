@@ -129,7 +129,7 @@ export const services = {
     {
       title: "Paseos adaptados",
       description:
-        "Cada paseo está pensado según el nivel de actividad, la edad y las necesidades de tu perro. Ni muy corto, ni demasiado largo.",
+        "Cada paseo está pensado según el nivel de actividad, la edad y las necesidades de tu perro.",
     },
     {
       title: "Administración de medicación",
@@ -152,7 +152,7 @@ export const services = {
 export const methodology = {
   eyebrow: "Cómo trabajamos",
   title: "Un proceso pensado para que tu perro se sienta en casa desde el primer momento.",
-  lead: "Nos importa conocer bien a tu perro antes de que llegue. Cuanto más sabemos de él, mejor podemos cuidarle.",
+  lead: "Nos importa conocer bien a tu perro. Cuanto más sabemos de él, mejor podemos cuidarle.",
   cta: "Reservar estancia",
   steps: [
     {
@@ -183,20 +183,28 @@ export const pricing = {
   items: [
     {
       name: "Alojamiento completo",
-      price: "35",
+      price: "30",
       unit: "noche",
       description: "Noche completa en casa con nosotros. Incluye paseo, juegos, fotos diarias y toda la atención personalizada.",
       highlight: true,
     },
     {
+      name: "Guardería de día",
+      price: "25",
+      unit: "día",
+      description:
+        "Durante las horas que necesites al día, cuidamos de tu perro con juegos, paseos y mimos (varía el precio según el número de horas, consultar).",
+      highlight: false,
+    },
+    {
       name: "Paseo adaptado",
       price: "15",
-      unit: "paseo",
+      unit: "paseos de 1h",
       description: "Paseo adaptado a las necesidades y nivel de actividad de tu perro. Con fotos incluidas.",
       highlight: false,
     },
   ],
-  note: "Para la guardería de día o combinaciones especiales, consúltanos sin compromiso.",
+  note: "Para combinaciones especiales o necesidades concretas, consúltanos sin compromiso.",
 };
 
 export const faq = {
@@ -207,12 +215,12 @@ export const faq = {
     {
       question: "¿Cuántos perros cuidáis a la vez?",
       answer:
-        "Nuestro objetivo es ofrecer una atención de máxima calidad, no cuidar al mayor número posible. Por eso limitamos el número de huéspedes para que cada perro reciba toda la atención que merece.",
+        "Nuestro objetivo es ofrecer una atención de máxima calidad, no cuidar al mayor número posible. Por eso limitamos el número de perritos para que cada uno reciba toda la atención que merece.",
     },
     {
       question: "¿Dónde duermen los perros?",
       answer:
-        "Los perros conviven con nosotros dentro de casa. Pueden descansar en el sofá o en la cama que traigan de casa para sentirse más cómodos y seguros.",
+        "Los perros conviven con nosotros dentro de casa. Pueden dormir donde más les guste, sin limitaciones. Tienen a su disposición sofás, camas para perros o su propia cama si nos la facilitáis.",
     },
     {
       question: "¿Enviáis fotos durante la estancia?",
@@ -232,12 +240,12 @@ export const faq = {
     {
       question: "¿En qué zona operáis?",
       answer:
-        "Estamos en Las Rozas de Madrid. También podemos atender a perros de zonas cercanas. Consúltanos si no estás seguro.",
+        "Estamos en Las Rozas de Madrid. También podemos atender a perros de zonas cercanas. Consúltanos sin compromiso.",
     },
     {
       question: "¿Qué diferencia hay con una residencia canina?",
       answer:
-        "En las residencias los perros suelen dormir en cheniles o zonas separadas. En Hogar Perruno conviven con nosotros en casa, como un miembro más de la familia, con toda la atención y el cariño que eso implica.",
+        "En las residencias los perros suelen dormir en cheniles o zonas separadas. En Hogar Perruno conviven con nosotros en casa, como un miembro más de la familia, con tiempo de calidad, mimos, juegos, amor, un sitio seguro acondicionado y cómodo.",
     },
   ],
 };

@@ -30,7 +30,7 @@ import SectionHeading from "./SectionHeading.astro";
   .pricing__cards {
     display: grid;
     gap: 18px;
-    max-width: 760px;
+    max-width: 1100px;
     margin-inline: auto;
   }
 
@@ -118,5 +118,9 @@ import SectionHeading from "./SectionHeading.astro";
 
   @media (min-width: 640px) {
     .pricing__cards { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 960px) {
+    .pricing__cards { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
