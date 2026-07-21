@@ -94,7 +94,7 @@ export const values = {
     {
       title: "Seguridad",
       description:
-        "Contamos con un seguro específico para cuidadores y paseadores de perros. Si ocurriera cualquier imprevisto durante la estancia, podemos llevarlo al veterinario con la tranquilidad de estar cubiertos.",
+        "Contamos con un seguro específico para proteger a tu mascota. Si ocurriera cualquier imprevisto durante la estancia, podemos llevarlo al veterinario con la tranquilidad de estar cubiertos.",
       icon: "lock",
     },
   ],
