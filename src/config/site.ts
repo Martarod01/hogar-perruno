@@ -59,7 +59,7 @@ export const hero = {
 export const heroStats = [
   { value: "100%", label: "Atención personalizada" },
   { value: "24h", label: "Comunicación constante" },
-  { value: "0", label: "Jaulas ni cheniles" },
+  { value: "365", label: "Días al año" },
 ];
 
 export const values = {
