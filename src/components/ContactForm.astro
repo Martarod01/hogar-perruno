@@ -39,7 +39,7 @@ const {
     <input type="email" name="email" autocomplete="email" required />
   </label>
 
-  <div class="form__row">
+  <div class="form__row form__row--dog">
     <label>
       <span>Nombre del perro</span>
       <input type="text" name="dog_name" />
@@ -47,6 +47,10 @@ const {
     <label>
       <span>Raza</span>
       <input type="text" name="dog_breed" />
+    </label>
+    <label>
+      <span>Edad</span>
+      <input type="text" name="dog_age" placeholder="Ej. 3 años" />
     </label>
   </div>
 
@@ -192,5 +196,6 @@ const {
 
   @media (min-width: 520px) {
     .form__row { grid-template-columns: 1fr 1fr; }
+    .form__row--dog { grid-template-columns: 1fr 1fr 1fr; }
   }
 </style>

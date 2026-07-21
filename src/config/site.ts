@@ -243,6 +243,11 @@ export const faq = {
         "Estamos en Las Rozas de Madrid. También podemos atender a perros de zonas cercanas. Consúltanos sin compromiso.",
     },
     {
+      question: "¿Prestáis servicio de transporte?",
+      answer:
+        "Sí. Recogemos y entregamos a tu perro donde lo necesites, tanto para desplazamientos cortos como para viajes de larga distancia por toda la península.",
+    },
+    {
       question: "¿Qué diferencia hay con una residencia canina?",
       answer:
         "En las residencias los perros suelen dormir en cheniles o zonas separadas. En Hogar Perruno conviven con nosotros en casa, como un miembro más de la familia, con tiempo de calidad, mimos, juegos, amor, un sitio seguro acondicionado y cómodo.",
