@@ -1,5 +1,5 @@
 ---
-import { contact, footer, local, navItems, seo } from "../config/site";
+import { contact, local, navItems, seo } from "../config/site";
 
 const year = new Date().getFullYear();
 ---
@@ -8,7 +8,6 @@ const year = new Date().getFullYear();
   <div class="wrap footer__grid">
     <div class="footer__brand">
       <img src={seo.logo} alt="Hogar Perruno" width="400" height="400" loading="lazy" />
-      <p>{footer.tagline}</p>
       <p class="footer__nap">Alojamiento canino en {local.city}</p>
     </div>
 
@@ -59,7 +58,7 @@ const year = new Date().getFullYear();
   }
 
   .footer__brand p { margin: 0; max-width: 380px; line-height: 1.65; }
-  .footer__nap { margin-top: 12px !important; font-size: 0.82rem; opacity: 0.7; }
+  .footer__nap { margin-top: 8px !important; font-size: 0.82rem; opacity: 0.7; }
 
   .footer h2 {
     margin: 0 0 14px;

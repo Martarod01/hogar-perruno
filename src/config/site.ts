@@ -299,11 +299,6 @@ export const contactSection = {
     "Rellena el formulario y te contactamos para conocer a tu perro y organizar la estancia.",
 };
 
-export const footer = {
-  tagline:
-    "Alojamiento familiar para perros en Las Rozas de Madrid. Sin jaulas, con jardín vallado, atención personalizada y fotos cada día.",
-};
-
 export const legalInfo = {
   businessName: "Hogar Perruno",
   ownerName: "Hogar Perruno",
