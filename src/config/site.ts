@@ -106,7 +106,7 @@ export const about = {
   paragraphs: [
     "Sabemos lo importante que es encontrar a alguien de confianza cuando tienes que dejar a tu perro unos días. Por eso tratamos a cada uno como si fuera parte de nuestra propia familia.",
     "Nuestro amor por los perros nos llevó a empezar cuidando mascotas de familiares y amigos. Con el tiempo decidimos profesionalizar ese proyecto para ofrecer un servicio diferente, basado en la atención personalizada, el cariño y la confianza.",
-    "Hoy seguimos trabajando con la misma ilusión con la que empezamos. Hemos cuidado perros de diferentes tamaños, edades y personalidades: cachorros, perros senior, muy activos y tranquilos. Cada uno recibe un cuidado completamente adaptado a sus necesidades.",
+    "Hoy seguimos trabajando con la misma ilusión con la que empezamos. Hemos cuidado perros de diferentes tamaños, edades y personalidades. Cada uno recibe un cuidado completamente adaptado a sus necesidades.",
   ],
   signature: "Hogar Perruno · Las Rozas de Madrid",
 };
