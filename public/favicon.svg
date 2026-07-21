@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Huella de perro">
-  <g fill="#7f6642">
-    <!-- 4 dedos en arco -->
-    <ellipse cx="15.5" cy="21.5" rx="6.5" ry="8.8" transform="rotate(-22 15.5 21.5)"/>
-    <ellipse cx="26.2" cy="13.8" rx="6.1" ry="8.5" transform="rotate(-8 26.2 13.8)"/>
-    <ellipse cx="37.8" cy="13.8" rx="6.1" ry="8.5" transform="rotate(8 37.8 13.8)"/>
-    <ellipse cx="48.5" cy="21.5" rx="6.5" ry="8.8" transform="rotate(22 48.5 21.5)"/>
+  <g fill="#7f6642" transform="translate(32 34) scale(1.08 0.88) translate(-32 -34)">
+    <!-- Dedos mas pequenos y separados -->
+    <ellipse cx="8.5" cy="25" rx="5.8" ry="6.2" transform="rotate(-20 8.5 25)"/>
+    <ellipse cx="22" cy="16" rx="5.5" ry="6" transform="rotate(-7 22 16)"/>
+    <ellipse cx="42" cy="16" rx="5.5" ry="6" transform="rotate(7 42 16)"/>
+    <ellipse cx="55.5" cy="25" rx="5.8" ry="6.2" transform="rotate(20 55.5 25)"/>
 
-    <!-- Almohadilla central (forma de corazon suave) -->
+    <!-- Almohadilla central -->
     <path d="
-      M 32 29.5
-      C 40.5 29.5 48.8 34.8 50.2 43.5
-      C 51.2 50.2 47.2 56.8 40.5 58.2
-      C 36.8 59 34.2 57.2 32 54.5
-      C 29.8 57.2 27.2 59 23.5 58.2
-      C 16.8 56.8 12.8 50.2 13.8 43.5
-      C 15.2 34.8 23.5 29.5 32 29.5
+      M 32 30.5
+      C 42.8 30.5 53 35.2 54 43.2
+      C 54.8 49.2 50.5 55.2 42.8 56.2
+      C 38.4 56.8 35 55.2 32 52.8
+      C 29 55.2 25.6 56.8 21.2 56.2
+      C 13.5 55.2 9.2 49.2 10 43.2
+      C 11 35.2 21.2 30.5 32 30.5
       Z
     "/>
   </g>

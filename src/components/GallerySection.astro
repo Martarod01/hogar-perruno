@@ -9,20 +9,47 @@ import SectionHeading from "./SectionHeading.astro";
   <div class="wrap">
     <SectionHeading eyebrow={gallery.eyebrow} title={gallery.title} lead={gallery.lead} id="gallery-title" />
 
-    <div class="gallery__grid">
-      {galleryImages.map((item, i) => (
-        <figure class={`gallery__item gallery__item--${item.span ?? "normal"}`} data-reveal style={`--delay: ${(i % 4) * 60}ms`}>
-          <SeoImage
-            image={item.image}
-            alt={item.alt}
-            title={item.title}
-            loading="lazy"
-            sizes="(min-width: 900px) 33vw, 100vw"
-            class="gallery__img"
-          />
-          {item.caption && <figcaption>{item.caption}</figcaption>}
-        </figure>
-      ))}
+    <div class="gallery__carousel" data-gallery-carousel data-reveal>
+      <div class="gallery__viewport">
+        <div class="gallery__track" data-gallery-track>
+          {galleryImages.map((item, i) => (
+            <figure class="gallery__slide" data-gallery-slide aria-hidden={i === 0 ? "false" : "true"}>
+              <SeoImage
+                image={item.image}
+                alt={item.alt}
+                title={item.title}
+                loading={i === 0 ? "eager" : "lazy"}
+                sizes="(min-width: 960px) 900px, 100vw"
+                class="gallery__img"
+              />
+              {item.caption && <figcaption>{item.caption}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      </div>
+
+      <div class="gallery__controls">
+        <button type="button" class="gallery__nav" data-gallery-prev aria-label="Imagen anterior">
+          <span aria-hidden="true">‹</span>
+        </button>
+
+        <div class="gallery__dots" data-gallery-dots role="tablist" aria-label="Imágenes de la galería">
+          {galleryImages.map((_, i) => (
+            <button
+              type="button"
+              class:list={["gallery__dot", { "is-active": i === 0 }]}
+              data-gallery-dot
+              data-index={i}
+              aria-label={`Ir a la imagen ${i + 1}`}
+              aria-selected={i === 0 ? "true" : "false"}
+            />
+          ))}
+        </div>
+
+        <button type="button" class="gallery__nav" data-gallery-next aria-label="Imagen siguiente">
+          <span aria-hidden="true">›</span>
+        </button>
+      </div>
     </div>
 
     <p class="gallery__note" data-reveal>
@@ -31,45 +58,204 @@ import SectionHeading from "./SectionHeading.astro";
   </div>
 </section>
 
+<script>
+  document.querySelectorAll("[data-gallery-carousel]").forEach((root) => {
+    if (!(root instanceof HTMLElement)) return;
+
+    const track = root.querySelector("[data-gallery-track]");
+    const slides = [...root.querySelectorAll("[data-gallery-slide]")];
+    const dots = [...root.querySelectorAll("[data-gallery-dot]")];
+    const prev = root.querySelector("[data-gallery-prev]");
+    const next = root.querySelector("[data-gallery-next]");
+    if (!(track instanceof HTMLElement) || slides.length === 0) return;
+
+    let index = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const AUTO_MS = 5000;
+
+    const goTo = (nextIndex: number) => {
+      index = (nextIndex + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+
+      slides.forEach((slide, i) => {
+        slide.setAttribute("aria-hidden", i === index ? "false" : "true");
+      });
+
+      dots.forEach((dot, i) => {
+        const active = i === index;
+        dot.classList.toggle("is-active", active);
+        dot.setAttribute("aria-selected", active ? "true" : "false");
+      });
+    };
+
+    const stop = () => {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    };
+
+    const start = () => {
+      if (reduceMotion || slides.length < 2) return;
+      stop();
+      timer = setInterval(() => goTo(index + 1), AUTO_MS);
+    };
+
+    prev?.addEventListener("click", () => {
+      goTo(index - 1);
+      start();
+    });
+
+    next?.addEventListener("click", () => {
+      goTo(index + 1);
+      start();
+    });
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const i = Number(dot instanceof HTMLElement ? dot.dataset.index : NaN);
+        if (Number.isFinite(i)) {
+          goTo(i);
+          start();
+        }
+      });
+    });
+
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    root.addEventListener("focusin", stop);
+    root.addEventListener("focusout", (event) => {
+      const related = event.relatedTarget;
+      if (!(related instanceof Node) || !root.contains(related)) start();
+    });
+
+    let touchX = 0;
+    root.addEventListener(
+      "touchstart",
+      (event: TouchEvent) => {
+        touchX = event.changedTouches[0]?.clientX ?? 0;
+        stop();
+      },
+      { passive: true }
+    );
+    root.addEventListener(
+      "touchend",
+      (event: TouchEvent) => {
+        const endX = event.changedTouches[0]?.clientX ?? touchX;
+        const delta = endX - touchX;
+        if (Math.abs(delta) > 40) goTo(index + (delta < 0 ? 1 : -1));
+        start();
+      },
+      { passive: true }
+    );
+
+    goTo(0);
+    start();
+  });
+</script>
+
 <style>
-  .gallery__grid {
-    display: grid;
-    gap: 12px;
-    grid-template-columns: 1fr;
+  .gallery__carousel {
+    position: relative;
+    max-width: 920px;
+    margin-inline: auto;
   }
 
-  .gallery__item {
+  .gallery__viewport {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 3px solid var(--hp-paper);
+    background: var(--hp-peach);
+    box-shadow: var(--shadow);
+  }
+
+  .gallery__track {
+    display: flex;
+    transition: transform 520ms var(--ease);
+    will-change: transform;
+  }
+
+  .gallery__slide {
     margin: 0;
     position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background: var(--hp-peach);
-    border: 3px solid var(--hp-paper);
-    box-shadow: var(--shadow-soft);
+    flex: 0 0 100%;
+    min-width: 100%;
   }
 
-  .gallery__item :global(.gallery__img) {
+  .gallery__slide :global(.gallery__img) {
     width: 100%;
-    height: 100%;
-    min-height: 220px;
+    height: clamp(260px, 58vw, 480px);
     object-fit: cover;
-    transition: transform 400ms var(--ease);
+    display: block;
   }
 
-  .gallery__item:hover :global(.gallery__img) {
-    transform: scale(1.04);
-  }
-
-  .gallery__item figcaption {
+  .gallery__slide figcaption {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 14px 16px;
-    background: linear-gradient(transparent, rgba(31, 26, 22, 0.75));
+    padding: 18px 20px;
+    background: linear-gradient(transparent, rgba(31, 26, 22, 0.78));
     color: #fff;
-    font-size: 0.82rem;
+    font-size: 0.92rem;
     font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .gallery__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .gallery__nav {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--hp-honey);
+    border-radius: 50%;
+    background: var(--hp-paper);
+    color: var(--hp-brown);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    transition: transform 180ms var(--ease), background 180ms, border-color 180ms;
+  }
+
+  .gallery__nav:hover,
+  .gallery__nav:focus-visible {
+    background: var(--hp-peach);
+    border-color: var(--hp-tan);
+    transform: translateY(-1px);
+  }
+
+  .gallery__dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .gallery__dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--hp-sand);
+    cursor: pointer;
+    transition: transform 180ms var(--ease), background 180ms, width 180ms;
+  }
+
+  .gallery__dot.is-active {
+    width: 22px;
+    border-radius: 999px;
+    background: var(--hp-olive);
   }
 
   .gallery__note {
@@ -81,23 +267,9 @@ import SectionHeading from "./SectionHeading.astro";
     line-height: 1.6;
   }
 
-  @media (min-width: 640px) {
-    .gallery__grid {
-      grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: 200px;
-      grid-auto-flow: dense;
+  @media (prefers-reduced-motion: reduce) {
+    .gallery__track {
+      transition: none;
     }
-
-    .gallery__item--wide { grid-column: span 2; }
-  }
-
-  @media (min-width: 960px) {
-    .gallery__grid {
-      grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: 180px;
-    }
-
-    .gallery__item--wide { grid-column: span 2; }
-    .gallery__item--tall { grid-row: span 2; }
   }
 </style>

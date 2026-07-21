@@ -48,13 +48,12 @@ export const navItems = [
 
 export const hero = {
   eyebrow: "Hogar Perruno · Las Rozas de Madrid",
-  title: "Tu perro, siempre en familia",
-  subtitle: "Alojamiento familiar sin jaulas, con jardín y atención personalizada.",
+  title: "Donde tu perro siempre es familia",
+  subtitle: "Alojamiento familiar con jardín y atención personalizada.",
   description:
     "Cuidamos a tu perro como si fuera el nuestro: en casa, en el sofá, con cariño y fotos cada día. Porque no hay dos perros iguales, cada estancia se adapta a su personalidad, rutinas y necesidades.",
   cta: "Reservar estancia",
   secondaryCta: "Cómo trabajamos",
-  badges: ["Fotos y vídeos diarios", "Jardín vallado privado", "Sin jaulas ni cheniles"],
 };
 
 export const heroStats = [
