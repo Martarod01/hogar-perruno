@@ -45,13 +45,13 @@ export const galleryImages: SiteImage[] = [
     image: gallery2,
     alt: "Perro descansando cómodamente en el sofá de casa",
     caption: "Descanso en casa, como en su propio hogar",
-    span: "tall",
+    span: "normal",
   },
   {
     image: gallery3,
     alt: "Paseo con perro por Las Rozas de Madrid",
     caption: "Paseos adaptados a cada perro",
-    span: "normal",
+    span: "tall",
   },
   {
     image: gallery4,
@@ -63,12 +63,12 @@ export const galleryImages: SiteImage[] = [
     image: gallery5,
     alt: "Perro recibiendo cariño y atención personalizada",
     caption: "Atención individualizada cada día",
-    span: "tall",
+    span: "wide",
   },
   {
     image: gallery6,
     alt: "Dos perros conviviendo tranquilamente en Hogar Perruno",
     caption: "Convivencia tranquila y segura",
-    span: "wide",
+    span: "normal",
   },
 ];
