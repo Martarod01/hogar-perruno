@@ -38,7 +38,7 @@ export const seo = {
 };
 
 export const navItems = [
-  { label: "Inicio", href: "/#inicio" },
+  { label: "Inicio", href: "/" },
   { label: "Nosotros", href: "/#sobre-nosotros" },
   { label: "Servicios", href: "/#servicios" },
   { label: "Galería", href: "/#galeria" },

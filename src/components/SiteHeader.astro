@@ -4,7 +4,7 @@ import { navItems, seo } from "../config/site";
 
 <header class="header" data-header>
   <div class="wrap header__inner">
-    <a class="header__brand" href="/#inicio" aria-label="Hogar Perruno - inicio">
+    <a class="header__brand" href="/" aria-label="Hogar Perruno - inicio">
       <img src={seo.logo} alt="Hogar Perruno" width="400" height="400" fetchpriority="high" />
     </a>
 
@@ -26,7 +26,7 @@ import { navItems, seo } from "../config/site";
   const header = document.querySelector("[data-header]");
   const toggle = document.querySelector("[data-nav-toggle]");
   const nav = document.querySelector("[data-nav]");
-  const links = document.querySelectorAll("[data-nav-link], .header__cta");
+  const links = document.querySelectorAll("[data-nav-link], .header__cta, .header__brand");
 
   window.addEventListener("scroll", () => {
     header?.classList.toggle("is-scrolled", window.scrollY > 8);
@@ -45,7 +45,13 @@ import { navItems, seo } from "../config/site";
     document.body.classList.toggle("nav-open", !open);
   });
 
-  links.forEach((l) => l.addEventListener("click", close));
+  links.forEach((l) =>
+    l.addEventListener("click", () => {
+      // Diferir el cierre: si ocultamos el menú en el mismo click,
+      // el navegador puede cancelar la navegación a otras páginas.
+      setTimeout(close, 0);
+    })
+  );
 </script>
 
 <style>
