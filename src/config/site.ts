@@ -91,6 +91,12 @@ export const values = {
         "Experiencia con cachorros, perros senior, muy activos y tranquilos. Usamos refuerzo positivo y administramos medicación si es necesario.",
       icon: "shield",
     },
+    {
+      title: "Seguridad",
+      description:
+        "Contamos con un seguro específico para cuidadores y paseadores de perros. Si ocurriera cualquier imprevisto durante la estancia, podemos llevarlo al veterinario con la tranquilidad de estar cubiertos.",
+      icon: "lock",
+    },
   ],
 };
 
