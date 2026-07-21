@@ -86,8 +86,9 @@ const img = siteImages.hero;
     position: relative;
     z-index: 1;
     display: grid;
-    gap: 20px;
-    align-items: end;
+    gap: 16px;
+    align-items: start;
+    justify-items: start;
   }
 
   .hero__card {
@@ -151,7 +152,8 @@ const img = siteImages.hero;
   .hero__aside {
     display: grid;
     gap: 12px;
-    max-width: 400px;
+    width: 100%;
+    max-width: 600px;
   }
 
   .hero__stats {
@@ -200,12 +202,5 @@ const img = siteImages.hero;
 
   .hero__wa:hover {
     transform: translateY(-2px);
-  }
-
-  @media (min-width: 900px) {
-    .hero__content {
-      grid-template-columns: 1fr auto;
-      align-items: end;
-    }
   }
 </style>
