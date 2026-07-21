@@ -45,7 +45,7 @@ const img = siteImages.hero;
           </div>
         ))}
       </div>
-      <a class="hero__wa" href={contact.whatsapp} target="_blank" rel="noreferrer">
+      <a class="btn" href={contact.whatsapp} target="_blank" rel="noreferrer">
         💬 Escríbenos por WhatsApp
       </a>
     </aside>
@@ -182,25 +182,5 @@ const img = siteImages.hero;
     font-weight: 600;
     color: var(--hp-muted);
     line-height: 1.3;
-  }
-
-  .hero__wa {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    padding: 0 20px;
-    border-radius: var(--radius-pill);
-    background: linear-gradient(135deg, #25d366, #1ebe57);
-    color: #fff;
-    font-weight: 800;
-    font-size: 0.9rem;
-    width: fit-content;
-    box-shadow: 0 10px 24px -10px rgba(37, 211, 102, 0.45);
-    transition: transform 200ms var(--ease);
-  }
-
-  .hero__wa:hover {
-    transform: translateY(-2px);
   }
 </style>
