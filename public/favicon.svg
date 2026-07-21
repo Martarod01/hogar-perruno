@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Huella de perro">
+  <g fill="#7f6642">
+    <!-- 4 dedos en arco -->
+    <ellipse cx="15.5" cy="21.5" rx="6.5" ry="8.8" transform="rotate(-22 15.5 21.5)"/>
+    <ellipse cx="26.2" cy="13.8" rx="6.1" ry="8.5" transform="rotate(-8 26.2 13.8)"/>
+    <ellipse cx="37.8" cy="13.8" rx="6.1" ry="8.5" transform="rotate(8 37.8 13.8)"/>
+    <ellipse cx="48.5" cy="21.5" rx="6.5" ry="8.8" transform="rotate(22 48.5 21.5)"/>
+
+    <!-- Almohadilla central (forma de corazon suave) -->
+    <path d="
+      M 32 29.5
+      C 40.5 29.5 48.8 34.8 50.2 43.5
+      C 51.2 50.2 47.2 56.8 40.5 58.2
+      C 36.8 59 34.2 57.2 32 54.5
+      C 29.8 57.2 27.2 59 23.5 58.2
+      C 16.8 56.8 12.8 50.2 13.8 43.5
+      C 15.2 34.8 23.5 29.5 32 29.5
+      Z
+    "/>
+  </g>
+</svg>
