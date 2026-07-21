@@ -71,7 +71,7 @@ const structuredData = buildStructuredData(description, canonicalUrl);
       );
       document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
 
-      const scrollToHash = (hash) => {
+      const scrollToHash = (hash: string) => {
         const id = hash.replace(/^#/, "");
         if (!id) return false;
         const target = document.getElementById(id);
@@ -86,7 +86,7 @@ const structuredData = buildStructuredData(description, canonicalUrl);
         if (!(link instanceof HTMLAnchorElement)) return;
 
         const url = new URL(link.href, window.location.href);
-        const normalize = (path) => path.replace(/\/+$/, "") || "/";
+        const normalize = (path: string) => path.replace(/\/+$/, "") || "/";
         const samePage = normalize(url.pathname) === normalize(window.location.pathname);
         if (!samePage || !url.hash) return;
 
