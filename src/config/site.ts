@@ -297,6 +297,8 @@ export const contactSection = {
   formTitle: "Solicita información o reserva",
   formDescription:
     "Rellena el formulario y te contactamos para conocer a tu perro y organizar la estancia.",
+  googleScriptUrl:
+    "https://script.google.com/macros/s/AKfycbzptx6mO65vIActaMpR5QPs3MxuWXFWMyrEQIMALKcDdcSmjDdBgYjBLFOdZ6Sfql_clg/exec",
 };
 
 export const legalInfo = {
