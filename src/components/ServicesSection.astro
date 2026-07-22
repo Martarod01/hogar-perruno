@@ -1,6 +1,36 @@
 ---
 import { services } from "../config/site";
+import { galleryImages } from "../config/images";
 import SectionHeading from "./SectionHeading.astro";
+import SeoImage from "./SeoImage.astro";
+
+const mosaicImages = [galleryImages[0], galleryImages[1], galleryImages[2]];
+
+type MosaicCell =
+  | { kind: "image"; image: (typeof mosaicImages)[number]; index: number }
+  | { kind: "service"; title: string; description: string; index: number };
+
+const cells: MosaicCell[] = [];
+let serviceIndex = 0;
+let imageIndex = 0;
+
+for (let row = 0; row < 3; row++) {
+  for (let col = 0; col < 3; col++) {
+    if (row === col) {
+      cells.push({ kind: "image", image: mosaicImages[imageIndex], index: imageIndex });
+      imageIndex += 1;
+    } else {
+      const item = services.items[serviceIndex];
+      cells.push({
+        kind: "service",
+        title: item.title,
+        description: item.description,
+        index: serviceIndex,
+      });
+      serviceIndex += 1;
+    }
+  }
+}
 ---
 
 <section class="section services" id="servicios" aria-labelledby="services-title">
@@ -8,12 +38,25 @@ import SectionHeading from "./SectionHeading.astro";
     <SectionHeading eyebrow={services.eyebrow} title={services.title} lead={services.lead} id="services-title" />
 
     <div class="services__grid">
-      {services.items.map((service, i) => (
-        <article class="services__card" data-reveal style={`--delay: ${(i % 3) * 70}ms`}>
-          <h3>{service.title}</h3>
-          <p>{service.description}</p>
-        </article>
-      ))}
+      {cells.map((cell) =>
+        cell.kind === "image" ? (
+          <figure class="services__media" data-reveal style={`--delay: ${(cell.index % 3) * 70}ms`}>
+            <SeoImage
+              image={cell.image.image}
+              alt={cell.image.alt}
+              title={cell.image.caption}
+              loading="lazy"
+              sizes="(min-width: 960px) 33vw, 100vw"
+              class="services__img"
+            />
+          </figure>
+        ) : (
+          <article class="services__card" data-reveal style={`--delay: ${(cell.index % 3) * 70}ms`}>
+            <h3>{cell.title}</h3>
+            <p>{cell.description}</p>
+          </article>
+        )
+      )}
     </div>
   </div>
 </section>
@@ -23,16 +66,15 @@ import SectionHeading from "./SectionHeading.astro";
     display: grid;
     gap: 18px;
     grid-template-columns: 1fr;
+    align-items: stretch;
   }
 
-  .services__card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-height: 220px;
-    padding: 28px 26px;
+  .services__card,
+  .services__media {
+    margin: 0;
+    height: 100%;
+    min-height: 240px;
     border-radius: var(--radius-lg);
-    background: linear-gradient(145deg, var(--hp-olive-soft), var(--hp-paper));
     border: 1px solid rgba(109, 143, 100, 0.12);
     box-shadow: 0 14px 36px -18px rgba(109, 143, 100, 0.28);
     overflow: hidden;
@@ -42,7 +84,21 @@ import SectionHeading from "./SectionHeading.astro";
       border-color 280ms var(--ease);
   }
 
-  .services__card:hover {
+  .services__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 26px;
+    background: linear-gradient(145deg, var(--hp-olive-soft), var(--hp-paper));
+  }
+
+  .services__media {
+    position: relative;
+    background: var(--hp-peach);
+  }
+
+  .services__card:hover,
+  .services__media:hover {
     transform: translateY(-5px);
     border-color: rgba(109, 143, 100, 0.28);
     box-shadow: 0 20px 44px -16px rgba(109, 143, 100, 0.38);
@@ -64,6 +120,21 @@ import SectionHeading from "./SectionHeading.astro";
     line-height: 1.7;
   }
 
+  .services__media :global(.services__img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 480ms var(--ease);
+  }
+
+  .services__media:hover :global(.services__img) {
+    transform: scale(1.04);
+  }
+
   @media (min-width: 640px) {
     .services__grid {
       grid-template-columns: repeat(2, 1fr);
@@ -75,13 +146,19 @@ import SectionHeading from "./SectionHeading.astro";
       grid-template-columns: repeat(3, 1fr);
     }
 
-    .services__card {
-      min-height: 240px;
+    .services__card,
+    .services__media {
+      min-height: 260px;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .services__card:hover {
+    .services__card:hover,
+    .services__media:hover {
+      transform: none;
+    }
+
+    .services__media:hover :global(.services__img) {
       transform: none;
     }
   }
