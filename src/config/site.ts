@@ -15,7 +15,7 @@ export const local = {
 };
 
 export const seo = {
-  siteUrl: "https://hogarperruno.com",
+  siteUrl: "https://www.hogarperruno.es",
   siteName: "Hogar Perruno",
   title: "Hotel para perros en Las Rozas | Sin jaulas | Hogar Perruno",
   description:
@@ -307,7 +307,7 @@ export const legalInfo = {
   ownerFullName: "Hogar Perruno",
   taxId: "",
   address: `Las Rozas de Madrid, Comunidad de Madrid, España`,
-  domain: "hogarperruno.com",
+  domain: "hogarperruno.es",
   activity: "Servicios de cuidado y alojamiento de animales de compañía",
   hostingProvider: "El proveedor de alojamiento web del dominio",
   lastUpdated: "julio de 2026",

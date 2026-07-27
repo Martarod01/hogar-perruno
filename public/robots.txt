@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://hogarperruno.com/sitemap-index.xml
+Sitemap: https://www.hogarperruno.es/sitemap-index.xml
