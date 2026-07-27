@@ -222,7 +222,7 @@ export const faq = {
     {
       question: "¿Buscáis un hotel para perros en Las Rozas?",
       answer:
-        "Muchas familias nos encuentran buscando un hotel canino o una guardería para perros en Las Rozas. En Hogar Perruno ofrecemos una alternativa diferente: alojamiento familiar en casa, donde tu perro convive con nosotros como un miembro más de la familia, con atención personalizada y mimos y juegos garantizados.",
+        "Muchas familias nos encuentran buscando un hotel canino o una guardería para perros en Las Rozas. En Hogar Perruno ofrecemos una alternativa diferente: alojamiento familiar en casa, donde tu perro convive con nosotros como un miembro más de la familia, con atención personalizada, mimos y juegos garantizados.",
     },
     {
       question: "¿Cuántos perros cuidáis a la vez?",
