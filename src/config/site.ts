@@ -17,22 +17,29 @@ export const local = {
 export const seo = {
   siteUrl: "https://www.hogarperruno.es",
   siteName: "Hogar Perruno",
-  title: "Hotel para perros en Las Rozas | Sin jaulas | Hogar Perruno",
+  title: "Alojamiento para perros en Las Rozas | Cuidado familiar | Hogar Perruno",
   description:
-    "Alojamiento familiar para perros en Las Rozas de Madrid. Sin jaulas, atención personalizada, jardín vallado y fotos diarias. Tu perro siempre es familia.",
+    "Alojamiento familiar para perros en Las Rozas de Madrid. Una alternativa al hotel canino: atención personalizada en casa, mimos, juegos y siestas garantizadas.",
   logo: "/logo.png",
   keywords: [
     "hotel para perros Las Rozas",
     "hotel para perros Madrid",
-    "alojamiento para perros sin jaulas",
-    "residencia canina Las Rozas",
-    "guardería canina Las Rozas",
-    "cuidador de perros Las Rozas",
+    "hotel canino Las Rozas",
     "hotel canino Madrid",
-    "cuidado de perros Madrid",
-    "canguro para perros",
-    "dónde dejar a mi perro en vacaciones",
+    "alojamiento para perros Las Rozas",
+    "alojamiento para perros Madrid",
+    "alojamiento canino Las Rozas",
     "alojamiento canino Madrid",
+    "alojamiento familiar para perros",
+    "guardería canina Las Rozas",
+    "guardería canina Madrid",
+    "guardería para perros Las Rozas",
+    "residencia canina Las Rozas",
+    "cuidador de perros Las Rozas",
+    "cuidado de perros Madrid",
+    "canguro para perros Las Rozas",
+    "dónde dejar a mi perro en vacaciones",
+    "paseos para perros Las Rozas",
     "hotel para perros con jardín",
   ],
 };
@@ -114,7 +121,7 @@ export const about = {
 export const services = {
   eyebrow: "Servicios",
   title: "Todo lo que tu perro necesita para disfrutar de verdad.",
-  lead: "Cada servicio está pensado para que tu perro se sienta seguro, querido y feliz durante toda la estancia.",
+  lead: "Si buscas un hotel para perros o guardería canina en Las Rozas, aquí encontrarás una alternativa familiar. Cada servicio está pensado para que tu perro se sienta seguro, querido y feliz durante toda la estancia.",
   items: [
     {
       title: "Alojamiento familiar",
@@ -212,6 +219,11 @@ export const faq = {
   title: "Resolvemos tus dudas antes de la primera estancia",
   lead: "Si tienes alguna pregunta que no aparece aquí, escríbenos por WhatsApp o teléfono y te respondemos enseguida.",
   items: [
+    {
+      question: "¿Buscáis un hotel para perros en Las Rozas?",
+      answer:
+        "Muchas familias nos encuentran buscando un hotel canino o una guardería para perros en Las Rozas. En Hogar Perruno ofrecemos una alternativa diferente: alojamiento familiar en casa, donde tu perro convive con nosotros como un miembro más de la familia, con atención personalizada y sin prisas.",
+    },
     {
       question: "¿Cuántos perros cuidáis a la vez?",
       answer:
