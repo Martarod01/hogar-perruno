@@ -13,7 +13,7 @@ import SectionHeading from "./SectionHeading.astro";
       <div class="gallery__viewport">
         <div class="gallery__track" data-gallery-track>
           {galleryImages.map((item, i) => (
-            <figure class="gallery__slide" data-gallery-slide aria-hidden={i === 0 ? "false" : "true"}>
+            <figure class="gallery__slide" data-gallery-slide aria-hidden={i === 0 ? undefined : "true"}>
               <SeoImage
                 image={item.image}
                 alt={item.alt}
@@ -34,7 +34,7 @@ import SectionHeading from "./SectionHeading.astro";
           <span aria-hidden="true">‹</span>
         </button>
 
-        <div class="gallery__dots" data-gallery-dots role="tablist" aria-label="Imágenes de la galería">
+        <div class="gallery__dots" data-gallery-dots role="group" aria-label="Imágenes de la galería">
           {galleryImages.map((_, i) => (
             <button
               type="button"
@@ -42,7 +42,7 @@ import SectionHeading from "./SectionHeading.astro";
               data-gallery-dot
               data-index={i}
               aria-label={`Ir a la imagen ${i + 1}`}
-              aria-selected={i === 0 ? "true" : "false"}
+              aria-current={i === 0 ? "true" : undefined}
             />
           ))}
         </div>
@@ -80,13 +80,15 @@ import SectionHeading from "./SectionHeading.astro";
       track.style.transform = `translateX(-${index * 100}%)`;
 
       slides.forEach((slide, i) => {
-        slide.setAttribute("aria-hidden", i === index ? "false" : "true");
+        if (i === index) slide.removeAttribute("aria-hidden");
+        else slide.setAttribute("aria-hidden", "true");
       });
 
       dots.forEach((dot, i) => {
         const active = i === index;
         dot.classList.toggle("is-active", active);
-        dot.setAttribute("aria-selected", active ? "true" : "false");
+        if (active) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
       });
     };
 

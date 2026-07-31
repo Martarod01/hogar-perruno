@@ -6,15 +6,15 @@
   --hp-honey: #edd9c4;
   --hp-sand: #e5d5c3;
   --hp-tan: #c4a484;
-  --hp-brown: #8f6f55;
-  --hp-brown-soft: #a88468;
-  --hp-olive: #6d8f64;
-  --hp-olive-dark: #4f6b48;
+  --hp-brown: #6b5342;
+  --hp-brown-soft: #7a5f48;
+  --hp-olive: #567a4f;
+  --hp-olive-dark: #3f5639;
   --hp-olive-soft: #e8f0e4;
   --hp-sage-light: #f0f5ec;
   --hp-blush: #f3e0d4;
   --hp-ink: #3d342c;
-  --hp-muted: #7a6f64;
+  --hp-muted: #5c534a;
   --hp-line: rgba(61, 52, 44, 0.08);
   --hp-white: #ffffff;
 
@@ -101,14 +101,14 @@ section, [id] {
   padding: 14px 28px;
   border: 0;
   border-radius: var(--radius-pill);
-  background: linear-gradient(135deg, var(--hp-olive) 0%, #85a67c 100%);
+  background: linear-gradient(135deg, var(--hp-olive-dark) 0%, var(--hp-olive) 100%);
   color: var(--hp-white);
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.01em;
   cursor: pointer;
   transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), filter 220ms var(--ease);
-  box-shadow: 0 10px 24px -10px rgba(109, 143, 100, 0.5);
+  box-shadow: 0 10px 24px -10px rgba(63, 86, 57, 0.5);
 }
 
 .btn:hover,
