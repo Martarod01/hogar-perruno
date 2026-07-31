@@ -1,11 +1,13 @@
 ---
-import { navItems, seo } from "../config/site";
+import { Image } from "astro:assets";
+import { navItems } from "../config/site";
+import logo from "../assets/images/logo.png";
 ---
 
 <header class="header" data-header>
   <div class="wrap header__inner">
     <a class="header__brand" href="/" aria-label="Hogar Perruno - inicio">
-      <img src={seo.logo} alt="Hogar Perruno" width="400" height="400" fetchpriority="high" />
+      <Image src={logo} alt="Hogar Perruno" width={108} height={108} densities={[1, 2]} loading="eager" decoding="async" />
     </a>
 
     <button class="header__toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>

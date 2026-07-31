@@ -18,7 +18,8 @@ import SectionHeading from "./SectionHeading.astro";
                 image={item.image}
                 alt={item.alt}
                 title={item.title}
-                loading={i === 0 ? "eager" : "lazy"}
+                loading="lazy"
+                widths={[480, 768, 1024]}
                 sizes="(min-width: 960px) 900px, 100vw"
                 class="gallery__img"
               />

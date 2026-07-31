@@ -7,6 +7,14 @@ import Analytics from "../components/Analytics.astro";
 import { local, seo } from "../config/site";
 import { siteImages } from "../config/images";
 import { buildSocialImageUrl, buildStructuredData } from "../lib/seo";
+import "@fontsource/lora/600.css";
+import "@fontsource/lora/700.css";
+import "@fontsource/lora/500-italic.css";
+import "@fontsource/nunito/400.css";
+import "@fontsource/nunito/500.css";
+import "@fontsource/nunito/600.css";
+import "@fontsource/nunito/700.css";
+import "@fontsource/nunito/800.css";
 import "../styles/global.css";
 
 const { title = seo.title, description = seo.description } = Astro.props;
@@ -33,9 +41,6 @@ const structuredData = buildStructuredData(description, canonicalUrl);
     <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={seo.siteName} />
     <meta property="og:url" content={canonicalUrl} />

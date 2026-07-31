@@ -1,4 +1,5 @@
 ---
+import { getImage } from "astro:assets";
 import HeroSection from "../components/HeroSection.astro";
 import HighlightsSection from "../components/HighlightsSection.astro";
 import AboutSection from "../components/AboutSection.astro";
@@ -12,10 +13,24 @@ import ContactSection from "../components/ContactSection.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { seo } from "../config/site";
 import { siteImages } from "../config/images";
+
+const heroPreload = await getImage({
+  src: siteImages.hero.image,
+  format: "webp",
+  widths: [640, 960, 1280, 1920],
+});
 ---
 
 <BaseLayout title={seo.title} description={seo.description}>
-  <link slot="head" rel="preload" as="image" href={siteImages.hero.image.src} fetchpriority="high" />
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={heroPreload.src}
+    imagesrcset={heroPreload.srcSet.attribute}
+    imagesizes="100vw"
+    fetchpriority="high"
+  />
   <HeroSection />
   <HighlightsSection />
   <AboutSection />

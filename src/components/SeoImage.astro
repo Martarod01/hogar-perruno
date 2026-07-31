@@ -8,6 +8,7 @@ interface Props {
   title?: string;
   width?: number;
   height?: number;
+  widths?: number[];
   loading?: "lazy" | "eager";
   fetchPriority?: "high" | "low" | "auto";
   class?: string;
@@ -20,6 +21,7 @@ const {
   title,
   width,
   height,
+  widths = [480, 768, 1024, 1440],
   loading = "lazy",
   fetchPriority,
   class: className,
@@ -33,6 +35,7 @@ const {
   title={title}
   width={width ?? image.width}
   height={height ?? image.height}
+  widths={widths}
   loading={loading}
   fetchpriority={fetchPriority}
   decoding="async"

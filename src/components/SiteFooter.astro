@@ -1,5 +1,7 @@
 ---
-import { contact, local, navItems, seo } from "../config/site";
+import { Image } from "astro:assets";
+import { contact, local, navItems } from "../config/site";
+import logo from "../assets/images/logo.png";
 
 const year = new Date().getFullYear();
 ---
@@ -7,7 +9,7 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <img src={seo.logo} alt="Hogar Perruno" width="400" height="400" loading="lazy" />
+      <Image src={logo} alt="Hogar Perruno" width={120} height={120} densities={[1, 2]} loading="lazy" decoding="async" />
       <p class="footer__nap">Alojamiento canino en {local.city}</p>
     </div>
 
