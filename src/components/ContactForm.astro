@@ -20,7 +20,10 @@ const {
     <p>{description}</p>
   </div>
 
-  <input type="text" name="_gotcha" class="form__hp" tabindex="-1" autocomplete="off" />
+  <label class="form__hp">
+    <span>No rellenar</span>
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+  </label>
   <input type="hidden" name="source" value="Hogar Perruno (contacto)" />
 
   <div class="form__row">
@@ -139,8 +142,20 @@ const {
 </script>
 
 <style>
-  .form { display: grid; gap: 14px; }
-  .form__hp { position: absolute; opacity: 0; pointer-events: none; }
+  .form { display: grid; gap: 14px; position: relative; }
+  .form__hp {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
 
   .form__head h3 {
     margin: 0;
