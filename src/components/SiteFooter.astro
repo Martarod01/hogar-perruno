@@ -10,7 +10,7 @@ const year = new Date().getFullYear();
   <div class="wrap footer__grid">
     <div class="footer__brand">
       <Image src={logo} alt="Hogar Perruno" width={120} height={120} densities={[1, 2]} loading="lazy" decoding="async" />
-      <p class="footer__nap">Alojamiento canino en {local.city}</p>
+      <p class="footer__nap">Cuidadores de perros y alojamiento canino en {local.city}</p>
     </div>
 
     <nav class="footer__nav" aria-label="Pie de página">
@@ -34,6 +34,10 @@ const year = new Date().getFullYear();
       <a href="/privacidad/">Privacidad</a>
       <a href="/cookies/">Cookies</a>
     </nav>
+  </div>
+
+  <div class="wrap footer__credit">
+    <a href="https://cdecharlie.com" target="_blank" rel="noopener">C de Charlie</a>
   </div>
 </footer>
 
@@ -100,6 +104,19 @@ const year = new Date().getFullYear();
     flex-wrap: wrap;
     gap: 12px 18px;
   }
+
+  .footer__credit {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  .footer__credit a {
+    display: inline-block;
+    font-size: 0.78rem;
+    opacity: 0.85;
+  }
+
+  .footer__credit a:hover { opacity: 1; }
 
   @media (min-width: 760px) {
     .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }

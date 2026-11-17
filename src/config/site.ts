@@ -17,9 +17,9 @@ export const local = {
 export const seo = {
   siteUrl: "https://www.hogarperruno.es",
   siteName: "Hogar Perruno",
-  title: "Alojamiento para perros en Las Rozas | Cuidado familiar | Hogar Perruno",
+  title: "Alojamiento y cuidadores de perros en Las Rozas | Hogar Perruno",
   description:
-    "Alojamiento familiar para perros en Las Rozas de Madrid. Una alternativa al hotel canino: atención personalizada en casa, mimos, juegos y siestas garantizadas.",
+    "Cuidadores de perros y alojamiento familiar en Las Rozas de Madrid. Tu perro convive con nosotros en casa, con jardín, paseos, atención personalizada y fotos cada día.",
   logo: "/logo.png",
   keywords: [
     "hotel para perros Las Rozas",
@@ -35,7 +35,10 @@ export const seo = {
     "guardería canina Madrid",
     "guardería para perros Las Rozas",
     "residencia canina Las Rozas",
+    "cuidadores de perros Las Rozas",
+    "cuidadores de perros Las Rozas de Madrid",
     "cuidador de perros Las Rozas",
+    "cuidadores de perros Madrid",
     "cuidado de perros Madrid",
     "canguro para perros Las Rozas",
     "dónde dejar a mi perro en vacaciones",
@@ -56,7 +59,7 @@ export const navItems = [
 export const hero = {
   eyebrow: "Hogar Perruno · Las Rozas de Madrid",
   title: "Donde tu perro siempre es familia",
-  subtitle: "Alojamiento familiar con jardín y atención personalizada.",
+  subtitle: "Cuidadores de perros en Las Rozas: alojamiento familiar con jardín y atención personalizada.",
   description:
     "Cuidamos a tu perro como si fuera el nuestro: en casa, en el sofá, con cariño y fotos cada día. Porque no hay dos perros iguales, cada estancia se adapta a su personalidad, rutinas y necesidades.",
   cta: "Reservar estancia",
@@ -111,7 +114,7 @@ export const about = {
   eyebrow: "Sobre nosotros",
   title: "Somos una pareja apasionada por los perros.",
   paragraphs: [
-    "Sabemos lo importante que es encontrar a alguien de confianza cuando tienes que dejar a tu perro unos días. Por eso tratamos a cada uno como si fuera parte de nuestra propia familia.",
+    "Somos cuidadores de perros en Las Rozas de Madrid y sabemos lo importante que es encontrar a alguien de confianza cuando tienes que dejar a tu perro unos días. Por eso tratamos a cada uno como si fuera parte de nuestra propia familia.",
     "Nuestro amor por los perros nos llevó a empezar cuidando mascotas de familiares y amigos. Con el tiempo decidimos profesionalizar ese proyecto para ofrecer un servicio diferente, basado en la atención personalizada, el cariño y la confianza.",
     "Hoy seguimos trabajando con la misma ilusión con la que empezamos. Hemos cuidado perros de diferentes tamaños, edades y personalidades. Cada uno recibe un cuidado completamente adaptado a sus necesidades.",
   ],
@@ -223,6 +226,11 @@ export const faq = {
       question: "¿Buscáis un hotel para perros en Las Rozas?",
       answer:
         "Muchas familias nos encuentran buscando un hotel canino o una guardería para perros en Las Rozas. En Hogar Perruno ofrecemos una alternativa diferente: alojamiento familiar en casa, donde tu perro convive con nosotros como un miembro más de la familia, con atención personalizada, mimos y juegos garantizados.",
+    },
+    {
+      question: "¿Sois cuidadores de perros en Las Rozas?",
+      answer:
+        "Sí. Somos una pareja de cuidadores de perros en Las Rozas de Madrid. Cuidamos a tu perro en nuestra casa, con jardín vallado, paseos adaptados y fotos y vídeos durante todo el día. Ofrecemos alojamiento por noches, guardería de día y paseos, siempre con atención personalizada.",
     },
     {
       question: "¿Cuántos perros cuidáis a la vez?",

@@ -20,7 +20,7 @@ import SectionHeading from "./SectionHeading.astro";
                 title={item.title}
                 loading="lazy"
                 widths={[480, 768, 1024]}
-                sizes="(min-width: 960px) 900px, 100vw"
+                sizes="(min-width: 600px) 520px, 100vw"
                 class="gallery__img"
               />
               {item.caption && <figcaption>{item.caption}</figcaption>}
@@ -53,9 +53,6 @@ import SectionHeading from "./SectionHeading.astro";
       </div>
     </div>
 
-    <p class="gallery__note" data-reveal>
-      Próximamente añadiremos fotos reales de nuestros huéspedes. Mientras tanto, esta galería muestra el tipo de momentos que compartimos cada día.
-    </p>
   </div>
 </section>
 
@@ -161,7 +158,7 @@ import SectionHeading from "./SectionHeading.astro";
 <style>
   .gallery__carousel {
     position: relative;
-    max-width: 920px;
+    max-width: 520px;
     margin-inline: auto;
   }
 
@@ -188,7 +185,8 @@ import SectionHeading from "./SectionHeading.astro";
 
   .gallery__slide :global(.gallery__img) {
     width: 100%;
-    height: clamp(260px, 58vw, 480px);
+    height: auto;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     display: block;
   }
@@ -261,14 +259,6 @@ import SectionHeading from "./SectionHeading.astro";
     background: var(--hp-olive);
   }
 
-  .gallery__note {
-    margin: 28px auto 0;
-    max-width: 560px;
-    text-align: center;
-    color: var(--hp-muted);
-    font-size: 0.88rem;
-    line-height: 1.6;
-  }
 
   @media (prefers-reduced-motion: reduce) {
     .gallery__track {

@@ -6,6 +6,9 @@ import gallery3 from "../assets/images/gallery-3.jpg";
 import gallery4 from "../assets/images/gallery-4.jpg";
 import gallery5 from "../assets/images/gallery-5.jpg";
 import gallery6 from "../assets/images/gallery-6.jpg";
+import gallery7 from "../assets/images/gallery-7.jpg";
+import gallery8 from "../assets/images/gallery-8.jpg";
+import gallery9 from "../assets/images/gallery-9.jpg";
 import type { ImageMetadata } from "astro";
 
 export type SiteImage = {
@@ -28,7 +31,7 @@ export const siteImages = {
   },
   about: {
     image: aboutPhoto,
-    alt: "Cuidadores de Hogar Perruno con un perro en un ambiente familiar",
+    alt: "Cuidadores de perros de Hogar Perruno en Las Rozas con un perro en casa",
     title: "El equipo de Hogar Perruno",
     loading: "lazy" as const,
   },
@@ -37,38 +40,47 @@ export const siteImages = {
 export const galleryImages: SiteImage[] = [
   {
     image: gallery1,
-    alt: "Perro jugando en el jardín vallado de Hogar Perruno",
-    caption: "Juegos al aire libre en nuestro jardín privado",
-    span: "wide",
+    alt: "Golden retriever sonriente durante un paseo entre amapolas en Las Rozas",
+    caption: "Paseos por el campo, adaptados a cada perro",
   },
   {
     image: gallery2,
-    alt: "Perro descansando cómodamente en el sofá de casa",
-    caption: "Descanso en casa, como en su propio hogar",
-    span: "normal",
+    alt: "Perro pequeño de pelo blanco con la lengua fuera en un sendero",
+    caption: "Rutas tranquilas para los más pequeños",
   },
   {
     image: gallery3,
-    alt: "Paseo con perro por Las Rozas de Madrid",
-    caption: "Paseos adaptados a cada perro",
-    span: "tall",
+    alt: "Perro mestizo tumbado panza arriba sobre el césped, relajado",
+    caption: "Momentos de juego y relax al aire libre",
   },
   {
     image: gallery4,
-    alt: "Perro con juguetes de enriquecimiento mental",
-    caption: "Juegos y estimulación mental",
-    span: "normal",
+    alt: "Perro de pelo rizado color canela descansando en casa en Hogar Perruno",
+    caption: "Descanso en casa, como en su propio hogar",
   },
   {
     image: gallery5,
-    alt: "Perro recibiendo cariño y atención personalizada",
-    caption: "Atención individualizada cada día",
-    span: "wide",
+    alt: "Dóberman dormido sobre una manta azul junto a su cuidadora de Hogar Perruno",
+    caption: "Mimos y compañía a todas horas",
   },
   {
     image: gallery6,
-    alt: "Dos perros conviviendo tranquilamente en Hogar Perruno",
-    caption: "Convivencia tranquila y segura",
-    span: "normal",
+    alt: "Pomerania sonriente sentado en el suelo de casa",
+    caption: "Cada huésped, un miembro más de la familia",
+  },
+  {
+    image: gallery7,
+    alt: "Dóberman con arnés durante un paseo por el campo en Las Rozas de Madrid",
+    caption: "Ejercicio diario en plena naturaleza",
+  },
+  {
+    image: gallery8,
+    alt: "Perro blanco y negro con correa en un jardín con hojas de otoño",
+    caption: "Atención individualizada cada día",
+  },
+  {
+    image: gallery9,
+    alt: "Dóberman de pie en casa mirando a la cámara",
+    caption: "Un hogar seguro y acogedor",
   },
 ];
